@@ -26,6 +26,11 @@ namespace ServiceLayer
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.Routes.MapHttpRoute(
+                name: "Default",
+                routeTemplate: "",
+                defaults: new { controller = "MenuItem" }
+);
         }
     }
 }

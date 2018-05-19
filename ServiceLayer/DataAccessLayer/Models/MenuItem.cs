@@ -15,7 +15,6 @@ namespace DataAccessLayer.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int itemID { get; set; }
 
         [Required]

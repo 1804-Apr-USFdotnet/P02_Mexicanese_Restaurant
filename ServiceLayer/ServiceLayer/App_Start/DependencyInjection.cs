@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
 using AutoMapper;
 using DataAccessLayer.Models;
 using DataAccessLayer;
@@ -16,7 +16,8 @@ namespace ServiceLayer.App_Start
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            //builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             var mapperConfiguration = new MapperConfiguration(cfg => { cfg.AddProfile(new MenuItemServiceMapper()); });
             var mapper = mapperConfiguration.CreateMapper();

@@ -8,7 +8,7 @@ namespace DataAccessLayer.Models
     public partial class MexicaneseModel : DbContext
     {
         public MexicaneseModel()
-            : base("name=MexicaneseDBContext")
+            : base("name=MexicaneseModel")
         {
         }
 
@@ -36,6 +36,11 @@ namespace DataAccessLayer.Models
             modelBuilder.Entity<MenuItem>()
                 .Property(e => e.itemPrice)
                 .HasPrecision(9, 2);
+
+            modelBuilder.Entity<MenuItem>()
+                .HasMany(e => e.OrderItems)
+                .WithRequired(e => e.MenuItem)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Order>()
                 .HasMany(e => e.OrderCoupons)

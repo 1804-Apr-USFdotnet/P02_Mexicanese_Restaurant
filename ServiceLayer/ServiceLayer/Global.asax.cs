@@ -1,4 +1,4 @@
-﻿using Autofac.Integration.Mvc;
+﻿using Autofac.Integration.WebApi;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -12,7 +12,8 @@ namespace ServiceLayer
     {
         protected void Application_Start()
         {
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(DependencyInjection.RegisterTypes()));
+            var config = GlobalConfiguration.Configuration;
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(DependencyInjection.RegisterTypes());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

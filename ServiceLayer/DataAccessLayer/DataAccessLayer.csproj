@@ -55,7 +55,7 @@
     <Compile Include="Models\Coupon.cs" />
     <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\MenuItem.cs" />
-    <Compile Include="MexicaneseModel.cs" />
+    <Compile Include="Models\MexicaneseModel.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderCoupon.cs" />
     <Compile Include="Models\OrderItem.cs" />

@@ -58,7 +58,7 @@ node('Dev'){
     stage('deploy'){
         try {
             dir('ServiceLayer'){
-                bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-18-191-68-65.us-east-2.compute.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"${env.Deploy_Password}\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/MexicaneseRestaurant\" -enableRule:AppOffline -allowUntrusted"
+                bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-18-188-24-56.us-east-2.compute.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"${env.Deploy_Password}\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/MexicaneseRestaurant\" -enableRule:AppOffline -allowUntrusted"
             }  
         }
         catch (exc) {

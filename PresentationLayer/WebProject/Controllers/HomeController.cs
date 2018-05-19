@@ -10,7 +10,7 @@ namespace WebProject.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(); //test change
         }
 
         public ActionResult About()

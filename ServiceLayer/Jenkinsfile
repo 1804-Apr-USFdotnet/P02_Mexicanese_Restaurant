@@ -1,0 +1,73 @@
+node('master'){
+    stage('import'){
+        try{
+            git 'https://github.com/1804-Apr-USFdotnet/P02_Mexicanese_Restaurant.git'
+        } 
+        catch (exc){
+            slackError('import')
+            throw exc
+        }
+    }
+    stage('build'){
+        try{
+            dir('ServiceLayer'){
+                bat 'nuget restore'
+                bat 'msbuild'
+            }
+        } 
+        catch (exc){
+            slackError('build')
+            throw exc
+        }
+    }
+    stage('test'){
+        try{
+            dir('ServiceLayer'){
+                bat 'vstest.console ServiceLayerTests\\bin\\Debug\\ServiceLayerTests.dll'
+            }
+        } 
+        catch (exc){
+            slackError('test')
+            throw exc
+        }
+    }
+    stage('analyze'){
+        try {
+            dir('ServiceLayer') {
+                bat 'SonarQube.Scanner.MSBuild begin /k:test-project-rest-reviews /v:0.1.0'
+                bat 'msbuild /t:rebuild'
+                bat 'SonarQube.Scanner.MSBuild end'
+            }
+        }
+        catch (exc) {
+            slackError('analyze')
+            throw exc
+        }
+    }
+    stage('package'){
+        try{
+            dir('ServiceLayer') {
+                bat 'msbuild /t:package /p:Configuration=Debug;PackageFileName=..\\Package.zip'
+            }
+        } 
+        catch (exc) {
+            slackError('package')
+            throw exc
+        }
+    }
+    stage('deploy'){
+        try {
+            dir('ServiceLayer'){
+                bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-18-191-68-65.us-east-2.compute.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"${env.Deploy_Password}\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/MexicaneseRestaurant\" -enableRule:AppOffline -allowUntrusted"
+            }  
+        }
+        catch (exc) {
+            slackError('deploy')
+            throw exc
+        }
+    }
+}
+
+def slackError(stageName) {
+    slackSend color: 'danger', message: "${stageName} stage failed. [<${JOB_URL}|${env.JOB_NAME}> <${env.BUILD_URL}console|${env.BUILD_DISPLAY_NAME}>] [${currentBuild.durationString[0..-14]}]"
+}

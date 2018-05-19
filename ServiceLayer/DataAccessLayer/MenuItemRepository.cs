@@ -27,7 +27,7 @@ namespace DataAccessLayer
         }
 
         public void DeleteMenuItem(MenuItem MI)
-        {
+        { //If problems deleting, check to make sure on-cascade delete is functioning
             var delete = _repoContext.MenuItems.Find(MI.itemID);
             _repoContext.MenuItems.Remove(delete);
             _repoContext.SaveChanges();

@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -40,6 +41,79 @@ namespace ServiceLayer.Controllers
             }
         }
 
+        // GET: api/Restaurants/5
+        [ResponseType(typeof(Models.MenuItemServiceModel))]
+        public IHttpActionResult GetMenuItem(int id)
+        {
+            MenuItem MI;
+            try
+            {
+                MI = _menuLogic.GetMenuItemByID(id);
+            }
+            catch
+            {
+                return InternalServerError();
+            }
+            if (MI == null)
+            {
+                return NotFound();
+            }
+
+            var MI_SL = _mapper.Map<Models.MenuItemServiceModel>(MI);
+            return Ok(MI_SL);
+        }
+
+        // PUT: api/Restaurants/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutRestaurant(int id, Models.MenuItemServiceModel MI)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            MI.itemID = id;
+
+            MenuItem MI_DAL;
+            try
+            {
+                MI_DAL = _menuLogic.GetMenuItemByID(id);
+            }
+            catch
+            {
+                return InternalServerError();
+            }
+            if (MI_DAL == null)
+            {
+                return NotFound();
+            }
+            
+
+            try
+            {
+                _menuLogic.UpdateMI(MI_DAL);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                MI_DAL = null;
+                MI_DAL = _menuLogic.GetMenuItemByID(id);
+                if (MI_DAL == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return InternalServerError();
+                }
+            }
+            catch
+            {
+                return InternalServerError();
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
         // POST: api/MenuItems
         [ResponseType(typeof(Models.MenuItemServiceModel))]
         public IHttpActionResult PostRestaurant(Models.MenuItemServiceModel MI)
@@ -62,6 +136,37 @@ namespace ServiceLayer.Controllers
 
             var newMenuItem = _mapper.Map<Models.MenuItemServiceModel>(MILogic);
             return CreatedAtRoute("DefaultApi", new { id = MI.itemName }, newMenuItem);
+        }
+
+        // DELETE: api/MenuItems/5
+        [ResponseType(typeof(Models.MenuItemServiceModel))]
+        public IHttpActionResult DeleteRestaurant(int id)
+        {
+            MenuItem MI_DAL;
+            try
+            {
+                MI_DAL = _menuLogic.GetMenuItemByID(id);
+            }
+            catch
+            {
+                return InternalServerError();
+            }
+            if (MI_DAL == null)
+            {
+                return NotFound();
+            }
+            
+            try
+            {
+                _menuLogic.DeleteMI(MI_DAL);
+            }
+            catch
+            {
+                return InternalServerError();
+            }
+
+            var MI_SL = _mapper.Map<Models.MenuItemServiceModel>(MI_DAL);
+            return Ok(MI_SL);
         }
 
     }

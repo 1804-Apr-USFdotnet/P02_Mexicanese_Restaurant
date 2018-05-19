@@ -1,4 +1,4 @@
-node('master'){
+node('Dev'){
     stage('import'){
         try{
             git 'https://github.com/1804-Apr-USFdotnet/P02_Mexicanese_Restaurant.git'
@@ -34,7 +34,7 @@ node('master'){
     stage('analyze'){
         try {
             dir('ServiceLayer') {
-                bat 'SonarQube.Scanner.MSBuild begin /k:test-project-rest-reviews /v:0.1.0'
+                bat 'SonarQube.Scanner.MSBuild begin /k:Mexicanese-ServiceLayer /v:0.1.0'
                 bat 'msbuild /t:rebuild'
                 bat 'SonarQube.Scanner.MSBuild end'
             }

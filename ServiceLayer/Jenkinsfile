@@ -1,4 +1,4 @@
-node('Dev'){
+node('master'){
     stage('import'){
         try{
             git 'https://github.com/1804-Apr-USFdotnet/P02_Mexicanese_Restaurant.git'

@@ -46,7 +46,7 @@ node('master'){
     }
     stage('package'){
         try{
-            dir('ServiceLayer') {
+            dir('ServiceLayer/ServiceLayer') {
                 bat 'msbuild /t:package /p:Configuration=Debug;PackageFileName=..\\Package.zip'
             }
         } 

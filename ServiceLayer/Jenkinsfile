@@ -11,7 +11,8 @@ node('master'){
     stage('build'){
         try{
             dir('ServiceLayer'){
-                
+                bat 'nuget restore'
+                bat 'msbuild'
             }
         } 
         catch (exc){
@@ -22,7 +23,7 @@ node('master'){
     stage('test'){
         try{
             dir('ServiceLayer'){
-                
+                bat 'vstest.console ServiceLayerTests\\bin\\Debug\\ServiceLayerTests.dll'
             }
         } 
         catch (exc){
@@ -33,7 +34,9 @@ node('master'){
     stage('analyze'){
         try {
             dir('ServiceLayer') {
-                
+                bat 'SonarQube.Scanner.MSBuild begin /k:Mexicanese-ServiceLayer /v:0.1.0'
+                bat 'msbuild /t:rebuild'
+                bat 'SonarQube.Scanner.MSBuild end'
             }
         }
         catch (exc) {
@@ -44,7 +47,7 @@ node('master'){
     stage('package'){
         try{
             dir('ServiceLayer') {
-                
+                bat 'msbuild /t:package /p:Configuration=Debug;PackageFileName=..\\Package.zip'
             }
         } 
         catch (exc) {
@@ -55,7 +58,8 @@ node('master'){
     stage('deploy'){
         try {
             dir('ServiceLayer'){
-                }  
+                bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-18-188-24-56.us-east-2.compute.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"${env.Deploy_Password}\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/MexicaneseRestaurant\" -enableRule:AppOffline -allowUntrusted"
+            }  
         }
         catch (exc) {
             slackError('deploy')

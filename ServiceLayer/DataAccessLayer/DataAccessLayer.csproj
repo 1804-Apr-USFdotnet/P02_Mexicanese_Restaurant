@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CouponRepository.cs" />
+    <Compile Include="ICouponRepository.cs" />
     <Compile Include="IMenuItemRepository.cs" />
     <Compile Include="IOrderRepository.cs" />
     <Compile Include="IUserRepository.cs" />

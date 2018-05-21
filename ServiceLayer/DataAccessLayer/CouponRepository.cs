@@ -28,7 +28,7 @@ namespace DataAccessLayer
 
         public void DeleteCoupon(Coupon Cpn)
         {
-            var delete = _repoContext.Coupons.Find(Cpn.CouponID);
+            var delete = _repoContext.Coupons.Find(Cpn.id);
             _repoContext.Coupons.Remove(delete);
             _repoContext.SaveChanges();
         }
@@ -40,7 +40,7 @@ namespace DataAccessLayer
 
         public void ModifyCoupon(Coupon Cpn)
         {
-            var modify = _repoContext.Coupons.Find(Cpn.CouponID);
+            var modify = _repoContext.Coupons.Find(Cpn.id);
             _repoContext.Entry(modify).CurrentValues.SetValues(Cpn);
             _repoContext.SaveChanges();
         }

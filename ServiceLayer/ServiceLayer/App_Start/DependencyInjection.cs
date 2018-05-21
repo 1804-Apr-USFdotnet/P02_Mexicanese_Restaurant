@@ -30,9 +30,15 @@ namespace ServiceLayer.App_Start
 
             //Repositories
             builder.RegisterType<MenuItemRepository>().As<IMenuItemRepository>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
+            builder.RegisterType<OrderRepository>().As<IOrderRepository>();
+
 
             //Services
             builder.RegisterType<MenuItemLogic>().As<iMenuItem>();
+            builder.RegisterType<UserLogic>().As<IUser>();
+            builder.RegisterType<OrderLogic>().As<IOrder>();
+
 
             _container = builder.Build();
 

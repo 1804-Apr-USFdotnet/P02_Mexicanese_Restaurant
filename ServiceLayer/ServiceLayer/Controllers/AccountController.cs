@@ -1,4 +1,6 @@
 ﻿using ServiceLayer.Models;
+using DataAccessLayer;
+using DataAccessLayer.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -14,7 +16,7 @@ namespace ServiceLayer.Controllers
 {
     public class AccountController : ApiController
     {
-        /*
+        
         [HttpPost]
         [Route]
         [AllowAnonymous]
@@ -24,8 +26,8 @@ namespace ServiceLayer.Controllers
             {
                 return BadRequest();
             }
-            //var userStore = new UserStore<IdentityUser>(new DataDbContext());
-           // var userManager = new UserManager<IdentityUser>(userStore);
+            var userStore = new UserStore<IdentityUser>(new MexicaneseModel());
+            var userManager = new UserManager<IdentityUser>(userStore);
             var user = new IdentityUser(account.Email);
 
             if (userManager.Users.Any(u => u.UserName == account.Email))
@@ -37,6 +39,38 @@ namespace ServiceLayer.Controllers
 
             return Ok();
         }
-        */
+
+        [HttpPost]
+        [Route("~/api/Account/Login")]
+        [AllowAnonymous]
+        public IHttpActionResult LogIn(AccountModel account)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            // actually login
+            var userStore = new UserStore<IdentityUser>(new MexicaneseModel());
+            var userManager = new UserManager<IdentityUser>(userStore);
+            var user = userManager.Users.FirstOrDefault(u => u.UserName == account.Email);
+
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
+            if (!userManager.CheckPassword(user, account.Pwd))
+            {
+                return Unauthorized();
+            }
+
+            var authManager = Request.GetOwinContext().Authentication;
+            var claimsIdentity = userManager.CreateIdentity(user, WebApiConfig.AuthenticationType);
+
+            authManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claimsIdentity);
+
+            return Ok();
+        }
     }
 }

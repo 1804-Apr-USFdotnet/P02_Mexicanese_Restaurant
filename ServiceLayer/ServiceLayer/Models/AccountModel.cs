@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
+using AutoMapper;
+using DataAccessLayer.Models;
 
 namespace ServiceLayer.Models
 {
@@ -22,5 +20,24 @@ namespace ServiceLayer.Models
        // public virtual ICollection<Address> Addresses { get; set; }
 
         //public virtual CustomerInformation CustomerInformation { get; set; }
+    }
+    public class AccountModelMapper : Profile
+    {
+        public AccountModelMapper()
+        {
+            CreateMap<User, AccountModel>()
+                .ForSourceMember(x => x.Email, y => y.Ignore())
+                .ForSourceMember(x => x.Pwd, y => y.Ignore())
+                .ForSourceMember(x => x.AccessLevel, y => y.Ignore());
+            //.ForSourceMember(x => x.itemPrice, y => y.Ignore())
+            //.ForSourceMember(x => x.Stock, y => y.Ignore())
+
+            CreateMap<AccountModel, User>()
+                .ForSourceMember(x => x.Email, y => y.Ignore())
+                .ForSourceMember(x => x.Pwd, y => y.Ignore())
+                .ForSourceMember(x => x.AccessLevel, y => y.Ignore());
+                //.ForSourceMember(x => x.itemPrice, y => y.Ignore())
+                //.ForSourceMember(x => x.Stock, y => y.Ignore())
+        }
     }
 }

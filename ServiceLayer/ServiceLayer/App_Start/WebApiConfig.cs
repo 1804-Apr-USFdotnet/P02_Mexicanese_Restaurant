@@ -8,6 +8,9 @@ namespace ServiceLayer
 {
     public static class WebApiConfig
     {
+        public static string AuthenticationType = "AuthTestCookie";
+        public static string CookieName = "AuthTestCookie";
+
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
@@ -17,6 +20,9 @@ namespace ServiceLayer
                 methods: "*"
             );
             config.EnableCors(cors);
+
+            //filter to default to [Authorise] on everything
+            config.Filters.Add(new AuthorizeAttribute());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

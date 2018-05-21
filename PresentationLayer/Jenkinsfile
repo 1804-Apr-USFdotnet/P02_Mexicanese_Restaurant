@@ -1,0 +1,70 @@
+node('master'){
+    stage('import'){
+        try{
+            
+        } 
+        catch (exc){
+            slackError('import')
+            throw exc
+        }
+    }
+    stage('build'){
+        try{
+            dir('ServiceLayer'){
+                
+            }
+        } 
+        catch (exc){
+            slackError('build')
+            throw exc
+        }
+    }
+    stage('test'){
+        try{
+            dir('ServiceLayer'){
+                
+            }
+        } 
+        catch (exc){
+            slackError('test')
+            throw exc
+        }
+    }
+    stage('analyze'){
+        try {
+            dir('ServiceLayer') {
+                
+            }
+        }
+        catch (exc) {
+            slackError('analyze')
+            throw exc
+        }
+    }
+    stage('package'){
+        try{
+            dir('ServiceLayer/ServiceLayer') {
+            
+            }
+        } 
+        catch (exc) {
+            slackError('package')
+            throw exc
+        }
+    }
+    stage('deploy'){
+        try {
+            dir('ServiceLayer'){
+                
+            }  
+        }
+        catch (exc) {
+            slackError('deploy')
+            throw exc
+        }
+    }
+}
+
+def slackError(stageName) {
+    slackSend color: 'danger', message: "${stageName} stage failed. [<${JOB_URL}|${env.JOB_NAME}> <${env.BUILD_URL}console|${env.BUILD_DISPLAY_NAME}>] [${currentBuild.durationString[0..-14]}]"
+}

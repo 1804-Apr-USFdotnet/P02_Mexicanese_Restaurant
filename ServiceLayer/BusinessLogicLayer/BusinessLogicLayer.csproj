@@ -41,8 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="iMenuItem.cs" />
+    <Compile Include="IOrder.cs" />
+    <Compile Include="IUser.cs" />
     <Compile Include="MenuItemLogic.cs" />
+    <Compile Include="OrderLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">

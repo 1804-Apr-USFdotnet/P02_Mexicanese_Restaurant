@@ -18,7 +18,7 @@ namespace ServiceLayer.Controllers
     {
         
         [HttpPost]
-        [Route]
+        //[Route]
         [AllowAnonymous]
         public IHttpActionResult Register(AccountModel account)
         {
@@ -26,7 +26,7 @@ namespace ServiceLayer.Controllers
             {
                 return BadRequest();
             }
-            var userStore = new UserStore<IdentityUser>(new MexicaneseModel());
+            var userStore = new UserStore<IdentityUser>(new IdentityDbContext());
             var userManager = new UserManager<IdentityUser>(userStore);
             var user = new IdentityUser(account.Email);
 
@@ -51,7 +51,7 @@ namespace ServiceLayer.Controllers
             }
 
             // actually login
-            var userStore = new UserStore<IdentityUser>(new MexicaneseModel());
+            var userStore = new UserStore<IdentityUser>(new IdentityDbContext());
             var userManager = new UserManager<IdentityUser>(userStore);
             var user = userManager.Users.FirstOrDefault(u => u.UserName == account.Email);
 

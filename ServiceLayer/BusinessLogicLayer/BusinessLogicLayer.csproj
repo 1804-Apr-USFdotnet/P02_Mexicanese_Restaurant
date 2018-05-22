@@ -42,13 +42,17 @@
   <ItemGroup>
     <Compile Include="AddressLogic.cs" />
     <Compile Include="CouponLogic.cs" />
+    <Compile Include="CustomerInformationLogic.cs" />
     <Compile Include="IAddress.cs" />
     <Compile Include="ICoupon.cs" />
+    <Compile Include="ICustomerInformation.cs" />
     <Compile Include="iMenuItem.cs" />
     <Compile Include="IOrder.cs" />
+    <Compile Include="IPaymentMethod.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="MenuItemLogic.cs" />
     <Compile Include="OrderLogic.cs" />
+    <Compile Include="PaymentMethodLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserLogic.cs" />
   </ItemGroup>

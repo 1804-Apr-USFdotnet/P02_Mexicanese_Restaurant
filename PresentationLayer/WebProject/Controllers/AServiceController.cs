@@ -7,7 +7,7 @@ namespace WebProject.Controllers
 {
     public class AServiceController : Controller
     {
-        protected static readonly HttpClient HttpClient = new HttpClient(new HttpClientHandler() { UseCookies = false });
+         protected static readonly HttpClient HttpClient = new HttpClient(new HttpClientHandler() { UseCookies = false });
         private static readonly Uri serviceUri = new Uri("http://localhost:51945/");
         private static readonly string cookieName = "AuthTestCookie";
 

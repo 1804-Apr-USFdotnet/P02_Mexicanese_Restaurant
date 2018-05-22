@@ -33,12 +33,14 @@ namespace ServiceLayer.App_Start
             builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<OrderRepository>().As<IOrderRepository>();
             builder.RegisterType<CouponRepository>().As<ICouponRepository>();
+            builder.RegisterType<AddressRepository>().As<IAddressRepository>();
 
             //Services
             builder.RegisterType<MenuItemLogic>().As<iMenuItem>();
             builder.RegisterType<UserLogic>().As<IUser>();
             builder.RegisterType<OrderLogic>().As<IOrder>();
             builder.RegisterType<CouponLogic>().As<ICoupon>();
+            builder.RegisterType<AddressLogic>().As<IAddress>();
 
             _container = builder.Build();
 

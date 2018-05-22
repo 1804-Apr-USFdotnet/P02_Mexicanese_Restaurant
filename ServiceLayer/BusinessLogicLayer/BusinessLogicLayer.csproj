@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressLogic.cs" />
     <Compile Include="CouponLogic.cs" />
+    <Compile Include="IAddress.cs" />
     <Compile Include="ICoupon.cs" />
     <Compile Include="iMenuItem.cs" />
     <Compile Include="IOrder.cs" />

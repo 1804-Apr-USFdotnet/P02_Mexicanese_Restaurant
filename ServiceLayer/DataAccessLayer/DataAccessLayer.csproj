@@ -50,8 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressRepository.cs" />
     <Compile Include="CouponRepository.cs" />
+    <Compile Include="IAddressRepository.cs" />
     <Compile Include="ICouponRepository.cs" />
+    <Compile Include="ICustomerInformationRepository.cs" />
     <Compile Include="IMenuItemRepository.cs" />
     <Compile Include="IOrderRepository.cs" />
     <Compile Include="IUserRepository.cs" />

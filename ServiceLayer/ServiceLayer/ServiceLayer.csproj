@@ -214,6 +214,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\CouponController.cs" />
     <Compile Include="Controllers\MenuItemController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddressServiceModel.cs" />
     <Compile Include="Models\CouponServiceModel.cs" />
     <Compile Include="Models\MenuItemServiceModel.cs" />
     <Compile Include="Models\OrderServiceModel.cs" />

@@ -21,6 +21,12 @@ namespace ServiceLayer
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
                 new CamelCasePropertyNamesContractResolver();
+            
+            config = GlobalConfiguration.Configuration;
+
+            config.Formatters.JsonFormatter
+                .SerializerSettings
+                .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }

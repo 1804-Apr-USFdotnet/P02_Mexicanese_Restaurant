@@ -1,12 +1,8 @@
 ﻿using ServiceLayer.Models;
-using DataAccessLayer;
 using DataAccessLayer.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security;
@@ -26,7 +22,7 @@ namespace ServiceLayer.Controllers
             {
                 return BadRequest();
             }
-            var userStore = new UserStore<IdentityUser>(new IdentityDbContext());
+            var userStore = new UserStore<IdentityUser>(new IDDBContext());
             var userManager = new UserManager<IdentityUser>(userStore);
             var user = new IdentityUser(account.Email);
 
@@ -51,7 +47,7 @@ namespace ServiceLayer.Controllers
             }
 
             // actually login
-            var userStore = new UserStore<IdentityUser>(new IdentityDbContext());
+            var userStore = new UserStore<IdentityUser>(new IDDBContext());
             var userManager = new UserManager<IdentityUser>(userStore);
             var user = userManager.Users.FirstOrDefault(u => u.UserName == account.Email);
 

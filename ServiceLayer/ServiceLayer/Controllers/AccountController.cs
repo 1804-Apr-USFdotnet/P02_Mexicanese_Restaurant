@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
+using Owin;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
 
@@ -14,7 +15,7 @@ namespace ServiceLayer.Controllers
     {
         
         [HttpPost]
-        //[Route]
+        //[Route("~api/Account/Register")]
         [AllowAnonymous]
         public IHttpActionResult Register(AccountModel account)
         {
@@ -66,6 +67,14 @@ namespace ServiceLayer.Controllers
 
             authManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claimsIdentity);
 
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("~/api/Account/Logout")]
+        public IHttpActionResult Logout()
+        {
+            Request.GetOwinContext().Authentication.SignOut(WebApiConfig.AuthenticationType);
             return Ok();
         }
     }

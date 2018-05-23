@@ -8,7 +8,7 @@ namespace WebProject.Controllers
     public class AServiceController : Controller
     {
          protected static readonly HttpClient HttpClient = new HttpClient(new HttpClientHandler() { UseCookies = false });
-        private static readonly Uri serviceUri = new Uri("http://localhost:51945/");
+        private static readonly Uri serviceUri = new Uri("http://localhost:51945/");//uri is suspect. May need to be changed
         private static readonly string cookieName = "AuthTestCookie";
 
         protected HttpRequestMessage CreateRequestToService(HttpMethod method, string uri)

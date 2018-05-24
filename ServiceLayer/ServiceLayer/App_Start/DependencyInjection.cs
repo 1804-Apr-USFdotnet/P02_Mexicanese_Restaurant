@@ -38,6 +38,7 @@ namespace ServiceLayer.App_Start
             builder.RegisterType<MenuItemLogic>().As<iMenuItem>();
             builder.RegisterType<UserLogic>().As<IUser>();
             builder.RegisterType<OrderLogic>().As<IOrder>();
+            builder.RegisterType<identityLogic>().As<ILogic>();
 
 
             _container = builder.Build();

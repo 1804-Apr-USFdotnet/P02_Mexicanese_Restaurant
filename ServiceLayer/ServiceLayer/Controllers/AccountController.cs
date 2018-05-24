@@ -36,18 +36,28 @@ namespace ServiceLayer.Controllers
             {
                 return BadRequest();
             }
+<<<<<<< HEAD
             var IL = _mapper.Map<LogicIdentityModel>(account);
             try
             {
                 _identityLogic.Register(IL);
             }
             catch
+=======
+            var userStore = new UserStore<IdentityUser>(new IDDBContext());
+            var userManager = new UserManager<IdentityUser>(userStore);
+            var user = new IdentityUser(account.Email);
+
+            if (userManager.Users.Any(u => u.UserName == account.Email)) //is this method just always returning null?
+>>>>>>> 7246b4f81e3401f7f55d56352fc3cd290305a2e8
             {
                 return BadRequest();
             }
 
             return Ok();
         }
+
+       
 
         [HttpPost]
         [Route("~/api/Account/Login")]
@@ -56,17 +66,24 @@ namespace ServiceLayer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(); //not failing here
             }
 
             // actually login
+<<<<<<< HEAD
             var userStore = new UserStore<IdentityUser>(new IDDBContext());
             var userManager = new UserManager<IdentityUser>(userStore);
             var user = userManager.Users.FirstOrDefault(u => u.UserName == account.UserName);
+=======
+            var userStore = new UserStore<IdentityUser>(new IDDBContext()); //is this bad? register uses it just fine
+            var userManager = new UserManager<IdentityUser>(userStore); //is this bad? register uses it just fine
+            var user = userManager.Users.FirstOrDefault(u => u.UserName == account.Email); //always tests as null? why?
+>>>>>>> 7246b4f81e3401f7f55d56352fc3cd290305a2e8
 
             if (user == null)
             {
-                return BadRequest();
+                return NotFound(); //failing here
+                
             }
 
             if (!userManager.CheckPassword(user, account.Password))

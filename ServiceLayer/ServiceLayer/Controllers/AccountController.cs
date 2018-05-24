@@ -27,7 +27,7 @@ namespace ServiceLayer.Controllers
             var userManager = new UserManager<IdentityUser>(userStore);
             var user = new IdentityUser(account.Email);
 
-            if (userManager.Users.Any(u => u.UserName == account.Email))
+            if (userManager.Users.Any(u => u.UserName == account.Email)) //is this method just always returning null?
             {
                 return BadRequest();
             }
@@ -37,6 +37,8 @@ namespace ServiceLayer.Controllers
             return Ok();
         }
 
+       
+
         [HttpPost]
         [Route("~/api/Account/Login")]
         [AllowAnonymous]
@@ -44,17 +46,18 @@ namespace ServiceLayer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(); //not failing here
             }
 
             // actually login
-            var userStore = new UserStore<IdentityUser>(new IDDBContext());
-            var userManager = new UserManager<IdentityUser>(userStore);
-            var user = userManager.Users.FirstOrDefault(u => u.UserName == account.Email);
+            var userStore = new UserStore<IdentityUser>(new IDDBContext()); //is this bad? register uses it just fine
+            var userManager = new UserManager<IdentityUser>(userStore); //is this bad? register uses it just fine
+            var user = userManager.Users.FirstOrDefault(u => u.UserName == account.Email); //always tests as null? why?
 
             if (user == null)
             {
-                return BadRequest();
+                return NotFound(); //failing here
+                
             }
 
             if (!userManager.CheckPassword(user, account.Pwd))

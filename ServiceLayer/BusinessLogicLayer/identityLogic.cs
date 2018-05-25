@@ -16,15 +16,18 @@ namespace BusinessLogicLayer
 
         public void Register(LogicIdentityModel account)
         {
-            var userStore = new UserStore<IdentityUser>(new IdentityDbContext<IdentityUser>("MexicaneseModelIdentity"));
+            var userStore = new UserStore<IdentityUser>(new IdentityDbContext<IdentityUser>("MexicaneseModel"));
             var userManager = new UserManager<IdentityUser>(userStore);
             var user = new IdentityUser(account.UserName);
 
             var users = userManager.Users.ToList();
 
-            if (userManager.Users.Any(u => u.UserName == account.UserName)) { throw new Exception(); };
-
             userManager.Create(user, account.Password);
+            userStore.Context.SaveChanges();
+
+            //if (userManager.Users.Any(u => u.UserName == account.UserName)) { throw new Exception(); };
+
+            
         }
     }
 }

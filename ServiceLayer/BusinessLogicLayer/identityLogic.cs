@@ -15,7 +15,7 @@ namespace BusinessLogicLayer
     {
         public void Register(LogicIdentityModel account)
         {
-            var userStore = new UserStore<IdentityUser>(new IdentityDbContext<IdentityUser>("MexicaneseModel"));
+            var userStore = new UserStore<IdentityUser>(new IDDBContext());
             var userManager = new UserManager<IdentityUser>(userStore);
             var user = new IdentityUser(account.UserName);
 

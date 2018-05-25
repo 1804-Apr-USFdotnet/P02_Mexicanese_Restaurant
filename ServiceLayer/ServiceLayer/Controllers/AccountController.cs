@@ -59,17 +59,17 @@ namespace ServiceLayer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(); //not failing here
+                return BadRequest(); 
             }
 
-            var userStore = new UserStore<IdentityUser>(new IdentityDbContext<IdentityUser>("MexicaneseModel")); //is this bad? register uses it just fine
-            var userManager = new UserManager<IdentityUser>(userStore); //is this bad? register uses it just fine
-            var user = userManager.Users.FirstOrDefault(u => u.UserName == account.UserName); //always tests as null? why?
+            var userStore = new UserStore<IdentityUser>(new IDDBContext()); 
+            var userManager = new UserManager<IdentityUser>(userStore); 
+            var user = userManager.Users.FirstOrDefault(u => u.UserName == account.UserName); 
 
 
             if (user == null)
             {
-                return NotFound(); //failing here
+                return NotFound(); 
                 
             }
 

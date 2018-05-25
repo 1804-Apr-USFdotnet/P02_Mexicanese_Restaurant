@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebProject.Models
 {
@@ -23,7 +24,7 @@ namespace WebProject.Models
 
         //public virtual CustomerInformation CustomerInformation { get; set; }
     }
-    public class AccountModelMapper : Profile
+    /*public class AccountModelMapper : Profile
     {
         public AccountModelMapper()
         {
@@ -41,5 +42,5 @@ namespace WebProject.Models
             //.ForSourceMember(x => x.itemPrice, y => y.Ignore())
             //.ForSourceMember(x => x.Stock, y => y.Ignore())
         }
-    }
+    }*/
 }

@@ -11,7 +11,8 @@ node('master'){
     stage('build'){
         try{
             dir('AngularLayer'){
-
+                bat 'npm install'
+                bat 'npm run build'
             }
         } 
         catch (exc){
@@ -44,7 +45,7 @@ node('master'){
     stage('package'){
         try{
             dir('AngularLayer') {
-
+              bat 'npm run build -- --base-href /SiAmigos/ --prod'
             }
         } 
         catch (exc) {
@@ -55,7 +56,7 @@ node('master'){
     stage('deploy'){
         try {
             dir('AngularLayer'){
-           
+               bat "msdeploy -verb:sync -source:contentPath=\"%CD%\" -dest:contentPath=\"Default Web Site/angularapp1\",wmsvc=ec2-52-205-188-6.compute-1.amazonaws.com,userName=Administrator,password=\"${env.angular_deploy_password}\" -enableRule:AppOffline -allowUntrusted"
            }  
         }
         catch (exc) {

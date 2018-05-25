@@ -62,7 +62,7 @@ namespace ServiceLayer.Controllers
                 return BadRequest(); //not failing here
             }
 
-            var userStore = new UserStore<IdentityUser>(new IDDBContext()); //is this bad? register uses it just fine
+            var userStore = new UserStore<IdentityUser>(new IdentityDbContext<IdentityUser>("MexicaneseModel")); //is this bad? register uses it just fine
             var userManager = new UserManager<IdentityUser>(userStore); //is this bad? register uses it just fine
             var user = userManager.Users.FirstOrDefault(u => u.UserName == account.UserName); //always tests as null? why?
 

@@ -13,7 +13,6 @@ namespace BusinessLogicLayer
 {
     public class identityLogic : ILogic
     {
-
         public void Register(LogicIdentityModel account)
         {
             var userStore = new UserStore<IdentityUser>(new IdentityDbContext<IdentityUser>("MexicaneseModel"));
@@ -24,6 +23,11 @@ namespace BusinessLogicLayer
 
             userManager.Create(user, account.Password);
 
+        }
+
+        public void Login(LogicIdentityModel account)
+        {
+            throw new NotImplementedException();
         }
     }
 }

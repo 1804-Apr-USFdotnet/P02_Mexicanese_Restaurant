@@ -50,7 +50,27 @@ namespace ServiceLayer.Controllers
             return Ok();
         }
 
-       
+        [HttpPost]
+        [Route("~/api/Account/RegisterAdmin")]
+        [Authorize(Roles = "admin")]
+        public IHttpActionResult RegisterAdmin(AccountModel account)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var IL = _mapper.Map<LogicIdentityModel>(account);
+            try
+            {
+                _identityLogic.RegisterAdmin(IL);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
 
         [HttpPost]
         [Route("~/api/Account/Login")]

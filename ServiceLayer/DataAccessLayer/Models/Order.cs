@@ -11,9 +11,9 @@ namespace DataAccessLayer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            OrderCoupons = new HashSet<OrderCoupon>();
-            OrderCoupons1 = new HashSet<OrderCoupon>();
-            OrderItems = new HashSet<OrderItem>();
+            //OrderCoupons = new HashSet<OrderCoupon>();
+            //OrderCoupons1 = new HashSet<OrderCoupon>();
+            //OrderItems = new HashSet<OrderItem>();
         }
 
         [Required]
@@ -38,5 +38,8 @@ namespace DataAccessLayer.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderItem> OrderItems { get; set; }
+
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<MenuItem> MenuItems { get; set; }
     }
 }

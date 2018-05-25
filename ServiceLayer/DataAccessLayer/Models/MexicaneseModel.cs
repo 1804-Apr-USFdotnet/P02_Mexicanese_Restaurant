@@ -46,22 +46,22 @@ namespace DataAccessLayer.Models
                 .WithRequired(e => e.MenuItem)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Order>()
-                .HasMany(e => e.OrderCoupons)
-                .WithRequired(e => e.Order)
-                .HasForeignKey(e => e.orderId)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Order>()
+                //.HasMany(e => e.OrderCoupons)
+                //.WithRequired(e => e.Order)
+                //.HasForeignKey(e => e.orderId)
+                //.WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Order>()
-                .HasMany(e => e.OrderCoupons1)
-                .WithRequired(e => e.Order1)
-                .HasForeignKey(e => e.orderId)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Order>()
+                //.HasMany(e => e.OrderCoupons1)
+                //.WithRequired(e => e.Order1)
+                //.HasForeignKey(e => e.orderId)
+                //.WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Order>()
-                .HasMany(e => e.OrderItems)
-                .WithRequired(e => e.Order)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Order>()
+            //    .HasMany(e => e.OrderItems)
+            //    .WithRequired(e => e.Order)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasOptional(e => e.CustomerInformation)

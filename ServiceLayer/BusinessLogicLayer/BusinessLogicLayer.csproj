@@ -48,9 +48,11 @@
     <Compile Include="ICustomerInformation.cs" />
     <Compile Include="iMenuItem.cs" />
     <Compile Include="IOrder.cs" />
+    <Compile Include="IOrderItem.cs" />
     <Compile Include="IPaymentMethod.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="MenuItemLogic.cs" />
+    <Compile Include="OrderItemLogic.cs" />
     <Compile Include="OrderLogic.cs" />
     <Compile Include="PaymentMethodLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

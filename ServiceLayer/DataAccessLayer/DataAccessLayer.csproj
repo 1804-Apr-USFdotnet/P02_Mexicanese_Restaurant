@@ -71,10 +71,16 @@
     <Compile Include="ICouponRepository.cs" />
     <Compile Include="ICustomerInformationRepository.cs" />
     <Compile Include="IMenuItemRepository.cs" />
+    <Compile Include="IOrderCouponRepository.cs" />
+    <Compile Include="IOrderItemRepository.cs" />
     <Compile Include="IOrderRepository.cs" />
     <Compile Include="IPaymentMethodRepository.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="MenuItemRepository.cs" />
+    <Compile Include="Migrations\201805240219499_PutITBACK.cs" />
+    <Compile Include="Migrations\201805240219499_PutITBACK.Designer.cs">
+      <DependentUpon>201805240219499_PutITBACK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Coupon.cs" />
@@ -86,6 +92,8 @@
     <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="OrderCouponRepository.cs" />
+    <Compile Include="OrderItemRepository.cs" />
     <Compile Include="OrderRepository.cs" />
     <Compile Include="PaymentMethodRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +104,11 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805240219499_PutITBACK.resx">
+      <DependentUpon>201805240219499_PutITBACK.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

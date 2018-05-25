@@ -1,4 +1,5 @@
-﻿using Autofac.Integration.WebApi;
+﻿using System.Net.Http.Headers;
+using Autofac.Integration.WebApi;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -27,6 +28,14 @@ namespace ServiceLayer
             config.Formatters.JsonFormatter
                 .SerializerSettings
                 .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            //MEDIA TYPE FORMMATTER Configurations
+            
+            config.Formatters.JsonFormatter.SupportedMediaTypes
+                .Add(new MediaTypeHeaderValue("text/html"));
+
+            var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
         }
     }
 }

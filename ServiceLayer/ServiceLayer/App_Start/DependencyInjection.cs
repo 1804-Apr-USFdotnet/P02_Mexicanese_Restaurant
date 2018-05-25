@@ -34,6 +34,7 @@ namespace ServiceLayer.App_Start
             builder.RegisterType<OrderRepository>().As<IOrderRepository>();
             builder.RegisterType<CouponRepository>().As<ICouponRepository>();
             builder.RegisterType<AddressRepository>().As<IAddressRepository>();
+            builder.RegisterType<OrderItemRepository>().As<IOrderItemRepository>();
             builder.RegisterType<PaymentMethodRepository>().As<IPaymentMethodRepository>();
 
             //Services
@@ -42,6 +43,7 @@ namespace ServiceLayer.App_Start
             builder.RegisterType<OrderLogic>().As<IOrder>();
             builder.RegisterType<CouponLogic>().As<ICoupon>();
             builder.RegisterType<AddressLogic>().As<IAddress>();
+            builder.RegisterType<OrderItemLogic>().As<IOrderItem>();
             builder.RegisterType<PaymentMethodLogic>().As<IPaymentMethod>();
 
             _container = builder.Build();

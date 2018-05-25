@@ -45,5 +45,10 @@ namespace BusinessLogicLayer
             // the only difference from Register action
             userManager.AddClaim(user.Id, new Claim(ClaimTypes.Role, "admin")); 
         }
+
+        public void Logout()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

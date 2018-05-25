@@ -25,7 +25,7 @@ namespace WebProject.Controllers
         {
             //httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
             HttpResponseMessage response = await httpClient.GetAsync(
-                "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem");
+                "http://localhost:49971/api/menuitem/");
 
             if (!response.IsSuccessStatusCode)
             {
@@ -42,7 +42,7 @@ namespace WebProject.Controllers
         public async Task<ActionResult> Details(int id)
         {
             HttpResponseMessage response = await httpClient.GetAsync(
-                "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" + id);
+                "http://localhost:49971/api/menuitem/" + id);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -75,7 +75,7 @@ namespace WebProject.Controllers
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                 HttpResponseMessage request = await httpClient.PostAsync(
-                    "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/", content);
+                    "http://localhost:49971/api/menuitem/", content);
 
                 if (!request.IsSuccessStatusCode)
                 {
@@ -113,7 +113,7 @@ namespace WebProject.Controllers
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                 HttpResponseMessage request = await httpClient.PutAsync(
-                    "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" + id, content);
+                    "http://localhost:49971/api/menuitem/" + id, content);
 
                 if (!request.IsSuccessStatusCode)
                 {
@@ -142,7 +142,7 @@ namespace WebProject.Controllers
             try
             {
                 HttpResponseMessage remove = await httpClient.DeleteAsync(
-                    "http://localhost:49971/mexicaneserestaurant/api/menuitem/" + id);
+                    "http://localhost:49971/api/menuitem/" + id);
                 if (!remove.IsSuccessStatusCode)
                 {
 

@@ -11,7 +11,7 @@ namespace WebProject.Controllers
     {
 
         // GET: Account/Login
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View();
         }
@@ -25,7 +25,7 @@ namespace WebProject.Controllers
                 return View("Error");
             }
 
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/AccountLogin");
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/Account/Login");
             apiRequest.Content = new ObjectContent<AccountModel>(account, new JsonMediaTypeFormatter());
 
             HttpResponseMessage apiResponse;
@@ -33,7 +33,7 @@ namespace WebProject.Controllers
             {
                 apiResponse = await HttpClient.SendAsync(apiRequest);
             }
-            catch
+            catch //this catch always catching??
             {
                 return View("Error");
             }

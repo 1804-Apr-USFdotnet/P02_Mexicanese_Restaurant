@@ -10,6 +10,7 @@ namespace BusinessLogicLayer
     public interface IAddress
     {
         List<Address> AllAddr();
+        List<Address> SearchByEmail(string email);
         Address GetAddressByID(int ID);
         void AddAddr(Address Addr);
         void UpdateAddr(Address Addr);

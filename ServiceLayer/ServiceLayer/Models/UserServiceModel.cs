@@ -19,7 +19,7 @@ namespace ServiceLayer.Models
         public int AccessLevel { get; set; }
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Address> Addresses { get; set; }
+        //public virtual ICollection<Address> Addresses { get; set; }
 
         public virtual CustomerInformation CustomerInformation { get; set; }
     }
@@ -30,14 +30,14 @@ namespace ServiceLayer.Models
             CreateMap<User, UserServiceModel>()
                 .ForSourceMember(x => x.Email, y => y.Ignore())
                 .ForSourceMember(x => x.CustomerInformation, y => y.Ignore())
-                .ForSourceMember(x => x.Addresses, y => y.Ignore())
+                //.ForSourceMember(x => x.Addresses, y => y.Ignore())
                 .ForSourceMember(x => x.AccessLevel, y => y.Ignore());
                 
 
             CreateMap<UserServiceModel, User>()
                  .ForSourceMember(x => x.Email, y => y.Ignore())
                 .ForSourceMember(x => x.CustomerInformation, y => y.Ignore())
-                .ForSourceMember(x => x.Addresses, y => y.Ignore())
+                //.ForSourceMember(x => x.Addresses, y => y.Ignore())
                 .ForSourceMember(x => x.AccessLevel, y => y.Ignore());
                 
         }

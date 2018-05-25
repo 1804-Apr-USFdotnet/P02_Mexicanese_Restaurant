@@ -33,6 +33,11 @@ namespace BusinessLogicLayer
             return _AddrRepo.GetByID(ID);
         }
 
+        public List<Address> SearchByEmail(string email)
+        {
+            return _AddrRepo.SearchByEmail(email).ToList();
+        }
+
         public void UpdateAddr(Address Addr)
         {
             _AddrRepo.ModifyAddress(Addr);

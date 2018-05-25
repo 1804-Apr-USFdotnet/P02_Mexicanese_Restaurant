@@ -25,12 +25,11 @@ namespace ServiceLayer.Controllers
         {
             _AddressLogic = AddressLogic;
             _mapper = mapper;
+            HttpClient httpClient = new HttpClient();
+            
         }
 
-
-
         // GET: api/Address/5
-
         //[Route("~/api/Addresss/ID")]
         [HttpGet]
         [ResponseType(typeof(Models.AddressServiceModel))]
@@ -52,6 +51,31 @@ namespace ServiceLayer.Controllers
 
             var Addr_SL = _mapper.Map<Models.AddressServiceModel>(Addr);
             return Ok(Addr_SL);
+        }
+
+
+        [HttpGet]
+        [Route("~/api/Address/GetAddressByEmail/")]
+        [ResponseType(typeof(Models.AddressServiceModel))]
+        public IHttpActionResult GetAddressByEmail(String email)
+        {
+            try
+            {
+                var addresses = _mapper.Map<IEnumerable<AddressServiceModel>>(_AddressLogic.SearchByEmail(email));
+                if (addresses.Any())
+                {
+                    return Ok(addresses);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch
+            {
+                return InternalServerError();
+            }
+            
         }
 
         public IHttpActionResult GetAddresss()

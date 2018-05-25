@@ -11,6 +11,7 @@ namespace DataAccessLayer
     {
         Address GetByID(int ID);
         IEnumerable<Address> GetAllAddresses();
+        IEnumerable<Address> SearchByEmail(String email);
         void AddAddress(Address Addr);
         void ModifyAddress(Address Addr);
         void DeleteAddress(Address Addr);

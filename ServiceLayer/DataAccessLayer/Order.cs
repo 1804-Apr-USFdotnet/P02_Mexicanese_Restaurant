@@ -1,4 +1,4 @@
-namespace DataAccessLayer.Models
+namespace DataAccessLayer
 {
     using System;
     using System.Collections.Generic;

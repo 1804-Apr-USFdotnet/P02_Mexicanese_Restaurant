@@ -10,6 +10,7 @@ namespace BusinessLogicLayer
     public interface IPaymentMethod
     {
         List<PaymentMethod> AllPM();
+        List<PaymentMethod> SearchByEmail(string email);
         PaymentMethod GetPaymentMethodByID(int ID);
         void AddPM(PaymentMethod PM);
         void UpdatePM(PaymentMethod PM);

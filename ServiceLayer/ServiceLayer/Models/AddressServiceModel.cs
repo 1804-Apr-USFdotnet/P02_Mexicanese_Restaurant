@@ -30,7 +30,7 @@ namespace ServiceLayer.Models
         [StringLength(20)]
         public string zipcode { get; set; }
 
-        public virtual User User { get; set; }
+        //public virtual User User { get; set; }
     }
     public class AddressServiceMapper : Profile
     {
@@ -42,7 +42,8 @@ namespace ServiceLayer.Models
                 .ForSourceMember(x => x.address1, y => y.Ignore())
                 .ForSourceMember(x => x.city, y => y.Ignore())
                 .ForSourceMember(x => x.state, y => y.Ignore())
-                .ForSourceMember(x => x.User, y => y.Ignore());
+                .ForSourceMember(x => x.zipcode, y => y.Ignore());
+                //.ForSourceMember(x => x.User, y => y.Ignore());
 
 
             CreateMap<AddressServiceModel, Address>()
@@ -51,7 +52,8 @@ namespace ServiceLayer.Models
                 .ForSourceMember(x => x.address1, y => y.Ignore())
                 .ForSourceMember(x => x.city, y => y.Ignore())
                 .ForSourceMember(x => x.state, y => y.Ignore())
-                .ForSourceMember(x => x.User, y => y.Ignore());
+                .ForSourceMember(x => x.zipcode, y => y.Ignore());
+            //.ForSourceMember(x => x.User, y => y.Ignore());
 
         }
     }

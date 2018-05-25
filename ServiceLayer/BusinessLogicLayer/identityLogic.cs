@@ -20,14 +20,10 @@ namespace BusinessLogicLayer
             var userManager = new UserManager<IdentityUser>(userStore);
             var user = new IdentityUser(account.UserName);
 
-            var users = userManager.Users.ToList();
+            if (userManager.Users.Any(u => u.UserName == account.UserName)) { throw new Exception(); };
 
             userManager.Create(user, account.Password);
-            userStore.Context.SaveChanges();
 
-            //if (userManager.Users.Any(u => u.UserName == account.UserName)) { throw new Exception(); };
-
-            
         }
     }
 }

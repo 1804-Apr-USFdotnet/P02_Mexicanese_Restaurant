@@ -38,10 +38,24 @@ namespace WebProject.Controllers
                 return View("Error");
             }
 
-
-            PassCookiesToClient(apiResponse);
-
-            return RedirectToAction("Index", "Home");
+            if (PassCookiesToClient(apiResponse))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View("Error");
+            }
+            /*
+            try
+            {
+                PassCookiesToClient(apiResponse);
+                return RedirectToAction("Index", "Home");
+            }
+            catch //this catch always catching??
+            {
+                return View("Error");
+            }*/
         }
 
         //GET: Account/Logout

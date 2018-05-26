@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Net.Http;
+using System.Net.Http.Formatting;
 using WebProject.Models;
 
 namespace WebProject.Controllers

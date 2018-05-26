@@ -11,7 +11,7 @@ using WebProject.Models;
 
 namespace WebProject.Controllers
 {
-    public class MenuItemController : Controller
+    public class MenuItemController : AServiceController
     {
         private static readonly HttpClient httpClient = new HttpClient();
 
@@ -41,8 +41,13 @@ namespace WebProject.Controllers
         // GET: MenuItem/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            HttpResponseMessage response = await httpClient.GetAsync(
-                "http://localhost:49971/api/menuitem/" + id);
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "http://localhost:49971/api/menuitem/" + id);
+            HttpResponseMessage response = await httpClient.SendAsync(apiRequest);
+
+
+            //"http://localhost:49971/api/menuitem/" + id);
+
+
 
             if (!response.IsSuccessStatusCode)
             {

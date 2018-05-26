@@ -48,10 +48,12 @@
     <Compile Include="ICustomerInformation.cs" />
     <Compile Include="iMenuItem.cs" />
     <Compile Include="IOrder.cs" />
+    <Compile Include="IOrderCoupon.cs" />
     <Compile Include="IOrderItem.cs" />
     <Compile Include="IPaymentMethod.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="MenuItemLogic.cs" />
+    <Compile Include="OrderCouponLogic.cs" />
     <Compile Include="OrderItemLogic.cs" />
     <Compile Include="OrderLogic.cs" />
     <Compile Include="PaymentMethodLogic.cs" />

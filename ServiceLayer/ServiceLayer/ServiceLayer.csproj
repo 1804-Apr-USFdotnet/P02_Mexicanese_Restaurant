@@ -232,6 +232,7 @@
     <Compile Include="Controllers\CustomerInformationController.cs" />
     <Compile Include="Controllers\MenuItemController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderCouponController.cs" />
     <Compile Include="Controllers\OrderItemController.cs" />
     <Compile Include="Controllers\PaymentMethodController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Models\CouponServiceModel.cs" />
     <Compile Include="Models\CustomerInformationServiceModel.cs" />
     <Compile Include="Models\MenuItemServiceModel.cs" />
+    <Compile Include="Models\OrderCouponServiceModel.cs" />
     <Compile Include="Models\OrderItemServiceModel.cs" />
     <Compile Include="Models\OrderServiceModel.cs" />
     <Compile Include="Models\PaymentMethodServiceModel.cs" />

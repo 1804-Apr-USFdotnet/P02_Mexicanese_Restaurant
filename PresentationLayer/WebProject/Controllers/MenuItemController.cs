@@ -46,7 +46,7 @@ namespace WebProject.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-
+               
                 return View("Error" + response.StatusCode);
             }
 
@@ -55,14 +55,14 @@ namespace WebProject.Controllers
         }
 
         // GET: MenuItem/Create
-        public ActionResult CreateAsync()
+        public ActionResult Create()
         {
             return View();
         }
 
         // POST: MenuItem/Create
         [HttpPost]
-        public async Task<ActionResult> CreateAsync(MenuItem collection)//change forcollection to the actual model
+        public async Task<ActionResult> Create(MenuItem collection)//change forcollection to the actual model
         {
            try
             {
@@ -91,9 +91,19 @@ namespace WebProject.Controllers
         }
 
         // GET: MenuItem/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            HttpResponseMessage response = await httpClient.GetAsync(
+                "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" + id);
+
+            if (!response.IsSuccessStatusCode)
+            {
+
+                return View("Error" + response.StatusCode);
+            }
+
+            var menuitem = await response.Content.ReadAsAsync<MenuItem>();
+            return View(menuitem);
         }
 
         // POST: MenuItem/Edit/5
@@ -130,14 +140,24 @@ namespace WebProject.Controllers
         }
 
         // GET: MenuItem/Delete/5
-        public ActionResult DeleteAsync(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            HttpResponseMessage response = await httpClient.GetAsync(
+                "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" + id);
+
+            if (!response.IsSuccessStatusCode)
+            {
+
+                return View("Error" + response.StatusCode);
+            }
+
+            var menuitem = await response.Content.ReadAsAsync<MenuItem>();
+            return View(menuitem);
         }
 
         // POST: MenuItem/Delete/5
         [HttpPost]
-        public async Task<ActionResult> DeleteAsync(int id, MenuItem collection)
+        public async Task<ActionResult> Delete(int id, MenuItem collection)
         {
             try
             {

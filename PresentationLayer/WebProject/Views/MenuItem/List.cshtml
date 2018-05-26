@@ -7,21 +7,21 @@
 <h2>List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateAsync")
+    @Html.ActionLink("Create New Recipe", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.itemName)
+            Recipe Label
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.itemDescription)
+            Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.itemPrice)
+            Price
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Stock)
+            Stock
         </th>
         <th></th>
     </tr>
@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.itemDescription)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.itemPrice)
+            $@Html.DisplayFor(modelItem => item.itemPrice)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Stock)
@@ -43,7 +43,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.itemID }) |
             @Html.ActionLink("Details", "Details", new {id=item.itemID}) |
-            @Html.ActionLink("Delete", "DeleteAsync", new { id = item.itemID })
+            @Html.ActionLink("Delete", "Delete", new { id = item.itemID })
         </td>
     </tr>
 }

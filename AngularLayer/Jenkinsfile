@@ -56,7 +56,7 @@ node('master'){
     stage('deploy'){
         try {
             dir('AngularLayer'){
-               bat "msdeploy -verb:sync -source:contentPath=\"%CD%\" -dest:contentPath=\"Default Web Site/angularapp1\",wmsvc=ec2-52-205-188-6.compute-1.amazonaws.com,userName=Administrator,password=\"${env.angular_deploy_password}\" -enableRule:AppOffline -allowUntrusted"
+               bat "msdeploy -verb:sync -source:contentPath=\"%CD%\" -dest:contentPath=\"Default Web Site/SiAmigos\",wmsvc=ec2-34-230-40-222.compute-1.amazonaws.com,userName=Administrator,password=\"${env.Deploy_Password_AL}\" -enableRule:AppOffline -allowUntrusted"
            }  
         }
         catch (exc) {

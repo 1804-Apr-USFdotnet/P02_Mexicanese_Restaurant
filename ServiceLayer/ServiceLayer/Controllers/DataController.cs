@@ -10,6 +10,7 @@ namespace ServiceLayer.Controllers
 {
     public class DataController : ApiController
     {
+        [AllowAnonymous]
         public IHttpActionResult Get()
         {
             // making use of global authorize filter in webapiconfig / filterconfig

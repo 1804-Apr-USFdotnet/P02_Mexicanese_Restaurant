@@ -13,7 +13,7 @@ namespace WebProject.Controllers
 {
     public class MenuItemController : AServiceController
     {
-        private static readonly HttpClient httpClient = new HttpClient();
+        //private static readonly HttpClient httpClient = new HttpClient();
 
         // GET: MenuItem
         public ActionResult Index()
@@ -24,7 +24,7 @@ namespace WebProject.Controllers
         public async Task<ActionResult> List()
         {
             //httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
-            HttpResponseMessage response = await httpClient.GetAsync(
+            HttpResponseMessage response = await HttpClient.GetAsync(
                 "http://localhost:49971/api/menuitem/");
 
             if (!response.IsSuccessStatusCode)
@@ -41,14 +41,10 @@ namespace WebProject.Controllers
         // GET: MenuItem/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "http://localhost:49971/api/menuitem/" + id);
-            HttpResponseMessage response = await httpClient.SendAsync(apiRequest);
-
-
-            //"http://localhost:49971/api/menuitem/" + id);
-
-
-
+            
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/menuitem/" + id);
+            HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
+            
             if (!response.IsSuccessStatusCode)
             {
 
@@ -79,7 +75,7 @@ namespace WebProject.Controllers
                 var content = new StringContent(JsonConvert.SerializeObject(collection));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                HttpResponseMessage request = await httpClient.PostAsync(
+                HttpResponseMessage request = await HttpClient.PostAsync(
                     "http://localhost:49971/api/menuitem/", content);
 
                 if (!request.IsSuccessStatusCode)
@@ -117,7 +113,7 @@ namespace WebProject.Controllers
                 var content = new StringContent(JsonConvert.SerializeObject(collection));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                HttpResponseMessage request = await httpClient.PutAsync(
+                HttpResponseMessage request = await HttpClient.PutAsync(
                     "http://localhost:49971/api/menuitem/" + id, content);
 
                 if (!request.IsSuccessStatusCode)
@@ -146,7 +142,7 @@ namespace WebProject.Controllers
         {
             try
             {
-                HttpResponseMessage remove = await httpClient.DeleteAsync(
+                HttpResponseMessage remove = await HttpClient.DeleteAsync(
                     "http://localhost:49971/api/menuitem/" + id);
                 if (!remove.IsSuccessStatusCode)
                 {

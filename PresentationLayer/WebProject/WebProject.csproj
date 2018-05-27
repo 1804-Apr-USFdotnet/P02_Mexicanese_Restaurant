@@ -159,12 +159,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuItemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Coupon.cs" />
+    <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\PaymentMethod.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +227,7 @@
     <Content Include="Views\MenuItem\Edit.cshtml" />
     <Content Include="Views\MenuItem\Delete.cshtml" />
     <Content Include="Views\Shared\ErrorNotFound.cshtml" />
+    <Content Include="Views\Error\ErrorMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -28,6 +28,7 @@ namespace ServiceLayer.Controllers
         }
 
         // GET: api/MenuItems
+        [AllowAnonymous]
         public IHttpActionResult GetMenuItems()
         {
             try
@@ -42,6 +43,7 @@ namespace ServiceLayer.Controllers
         }
 
         // GET: api/Restaurants/5
+        [AllowAnonymous]
         [ResponseType(typeof(Models.MenuItemServiceModel))]
         public IHttpActionResult GetMenuItem(int id)
         {
@@ -64,6 +66,7 @@ namespace ServiceLayer.Controllers
         }
 
         // PUT: api/Restaurants/5
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRestaurant(int id, Models.MenuItemServiceModel MI)
         {
@@ -115,6 +118,7 @@ namespace ServiceLayer.Controllers
         }
 
         // POST: api/MenuItems
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(Models.MenuItemServiceModel))]
         public IHttpActionResult PostRestaurant(Models.MenuItemServiceModel MI)
         {
@@ -139,6 +143,7 @@ namespace ServiceLayer.Controllers
         }
 
         // DELETE: api/MenuItems/5
+        [Authorize(Roles = "admin")]
         [ResponseType(typeof(Models.MenuItemServiceModel))]
         public IHttpActionResult DeleteRestaurant(int id)
         {

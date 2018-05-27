@@ -111,7 +111,7 @@ namespace WebProject.Controllers
         }
 
         // PUT: MenuItem/Edit/5
-        [HttpPut]
+        [HttpPost]
         public async Task<ActionResult> Edit(int id, MenuItem collection)
         {
             try

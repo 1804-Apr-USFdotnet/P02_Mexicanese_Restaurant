@@ -9,7 +9,7 @@ namespace WebProject.Controllers
     {
         public async Task<ActionResult> Index()
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/menuitem/4");
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/data");
 
             HttpResponseMessage apiResponse;
             try

@@ -219,6 +219,7 @@
     <Compile Include="Controllers\CouponController.cs" />
     <Compile Include="Controllers\CustomerInformationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\MenuItemController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderCouponController.cs" />

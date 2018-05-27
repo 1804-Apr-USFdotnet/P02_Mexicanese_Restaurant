@@ -33,7 +33,7 @@ namespace WebProject.Controllers
             {
                 apiResponse = await HttpClient.SendAsync(apiRequest);
             }
-            catch //this catch always catching??
+            catch 
             {
                 return View("Error");
             }
@@ -46,16 +46,6 @@ namespace WebProject.Controllers
             {
                 return View("Error");
             }
-            /*
-            try
-            {
-                PassCookiesToClient(apiResponse);
-                return RedirectToAction("Index", "Home");
-            }
-            catch //this catch always catching??
-            {
-                return View("Error");
-            }*/
         }
 
         //GET: Account/Logout

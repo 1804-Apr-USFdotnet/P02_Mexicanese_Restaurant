@@ -152,14 +152,24 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AServiceController.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MenuItemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Coupon.cs" />
+    <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderCoupon.cs" />
+    <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\PaymentMethod.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +182,16 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Pictures\food1.jpg" />
+    <Content Include="Pictures\food2.jpg" />
+    <Content Include="Pictures\food3.jpg" />
+    <Content Include="Pictures\food4.jpg" />
+    <Content Include="Pictures\food5.jpg" />
+    <Content Include="Pictures\food6.jpg" />
+    <Content Include="Pictures\food7.jpg" />
+    <Content Include="Pictures\food8.jpg" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -232,6 +252,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\MenuItem\List.cshtml" />
+    <Content Include="Views\MenuItem\Create.cshtml" />
+    <Content Include="Views\MenuItem\Details.cshtml" />
+    <Content Include="Views\MenuItem\Edit.cshtml" />
+    <Content Include="Views\MenuItem\Delete.cshtml" />
+    <Content Include="Views\Shared\ErrorNotFound.cshtml" />
+    <Content Include="Views\Error\ErrorMessage.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -247,7 +274,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

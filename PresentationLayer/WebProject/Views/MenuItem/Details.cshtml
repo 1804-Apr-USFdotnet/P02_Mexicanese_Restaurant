@@ -4,14 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Details on @Html.DisplayFor(model => model.itemName).</h2>
 
 <div>
-    <h4>MenuItem</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.itemName)
+            Recipe Name:
         </dt>
 
         <dd>
@@ -19,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.itemDescription)
+            Description:
         </dt>
 
         <dd>
@@ -27,15 +26,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.itemPrice)
+            Price:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.itemPrice)
+            $@Html.DisplayFor(model => model.itemPrice)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Stock)
+            Stock:
         </dt>
 
         <dd>
@@ -45,6 +44,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.itemID }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.itemID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

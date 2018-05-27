@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebProject.Models.MenuItem>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New Recipe", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Recipe Label
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Stock
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemDescription)
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.itemPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.itemID }) |
+            @Html.ActionLink("Details", "Details", new {id=item.itemID}) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.itemID })
+        </td>
+    </tr>
+}
+
+</table>

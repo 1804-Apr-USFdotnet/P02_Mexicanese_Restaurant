@@ -1,16 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using WebProject.Models;
 
 namespace WebProject.Controllers
 {
-    public class MenuItemController : AServiceController
+    public class MenuItemController : Controller
     {
-        //private static readonly HttpClient httpClient = new HttpClient();
+        private static readonly HttpClient httpClient = new HttpClient();
 
         // GET: MenuItem
         public ActionResult Index()
@@ -21,8 +24,8 @@ namespace WebProject.Controllers
         public async Task<ActionResult> List()
         {
             //httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
-            HttpResponseMessage response = await HttpClient.GetAsync(
-                "http://localhost:49971/api/menuitem/");
+            HttpResponseMessage response = await httpClient.GetAsync(
+                "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem");
 
             if (!response.IsSuccessStatusCode)
             {
@@ -38,13 +41,12 @@ namespace WebProject.Controllers
         // GET: MenuItem/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/menuitem/" + id);
-            HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
-            
+            HttpResponseMessage response = await httpClient.GetAsync(
+                "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" + id);
+
             if (!response.IsSuccessStatusCode)
             {
-
+               
                 return View("Error" + response.StatusCode);
             }
 
@@ -53,16 +55,16 @@ namespace WebProject.Controllers
         }
 
         // GET: MenuItem/Create
-        public ActionResult CreateAsync()
+        public ActionResult Create()
         {
             return View();
         }
 
         // POST: MenuItem/Create
         [HttpPost]
-        public async Task<ActionResult> CreateAsync(MenuItem collection)//change forcollection to the actual model
+        public async Task<ActionResult> Create(MenuItem collection)//change forcollection to the actual model
         {
-            try
+           try
             {
                 if (!ModelState.IsValid)
                 {
@@ -72,14 +74,14 @@ namespace WebProject.Controllers
                 var content = new StringContent(JsonConvert.SerializeObject(collection));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                HttpResponseMessage request = await HttpClient.PostAsync(
-                    "http://localhost:49971/api/menuitem/", content);
+                HttpResponseMessage request = await httpClient.PostAsync(
+                    "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/", content);
 
                 if (!request.IsSuccessStatusCode)
                 {
                     return View("Error");
                 }
-
+                
                 return RedirectToAction("Index");
             }
             catch
@@ -89,9 +91,19 @@ namespace WebProject.Controllers
         }
 
         // GET: MenuItem/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            HttpResponseMessage response = await httpClient.GetAsync(
+                "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" + id);
+
+            if (!response.IsSuccessStatusCode)
+            {
+
+                return View("Error" + response.StatusCode);
+            }
+
+            var menuitem = await response.Content.ReadAsAsync<MenuItem>();
+            return View(menuitem);
         }
 
         // POST: MenuItem/Edit/5
@@ -110,12 +122,12 @@ namespace WebProject.Controllers
                 var content = new StringContent(JsonConvert.SerializeObject(collection));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                HttpResponseMessage request = await HttpClient.PutAsync(
-                    "http://localhost:49971/api/menuitem/" + id, content);
+                HttpResponseMessage request = await httpClient.PutAsync(
+                    "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" +id, content);
 
                 if (!request.IsSuccessStatusCode)
                 {
-
+                    
                     return View("Error" + request.StatusCode);
                 }
 
@@ -128,19 +140,29 @@ namespace WebProject.Controllers
         }
 
         // GET: MenuItem/Delete/5
-        public ActionResult DeleteAsync(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            HttpResponseMessage response = await httpClient.GetAsync(
+                "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" + id);
+
+            if (!response.IsSuccessStatusCode)
+            {
+
+                return View("Error" + response.StatusCode);
+            }
+
+            var menuitem = await response.Content.ReadAsAsync<MenuItem>();
+            return View(menuitem);
         }
 
         // POST: MenuItem/Delete/5
         [HttpPost]
-        public async Task<ActionResult> DeleteAsync(int id, MenuItem collection)
+        public async Task<ActionResult> Delete(int id, MenuItem collection)
         {
             try
             {
-                HttpResponseMessage remove = await HttpClient.DeleteAsync(
-                    "http://localhost:49971/api/menuitem/" + id);
+                HttpResponseMessage remove = await httpClient.DeleteAsync(
+                    "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" + id);
                 if (!remove.IsSuccessStatusCode)
                 {
 

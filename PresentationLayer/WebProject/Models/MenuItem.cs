@@ -12,6 +12,7 @@ namespace WebProject.Models
 
         [Required]
         [StringLength(1024)]
+
         public string itemDescription { get; set; }
 
         [Required]

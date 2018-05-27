@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ServiceLayer.Models
+namespace WebProject.Models
 {
     public class Address
     {

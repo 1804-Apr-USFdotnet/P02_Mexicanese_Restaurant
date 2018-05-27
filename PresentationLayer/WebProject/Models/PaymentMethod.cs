@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceLayer.Models
+namespace WebProject.Models
 {
     public class PaymentMethod
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 
-namespace ServiceLayer.Models
+namespace WebProject.Models
 {
     public class Order
     {

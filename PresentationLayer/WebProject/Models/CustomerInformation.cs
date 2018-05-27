@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-namespace ServiceLayer.Models
+
+namespace WebProject.Models
 {
     public class CustomerInformation
     {

@@ -170,6 +170,8 @@
     <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderCoupon.cs" />
+    <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

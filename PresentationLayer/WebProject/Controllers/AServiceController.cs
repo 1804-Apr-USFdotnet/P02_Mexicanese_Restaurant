@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Mvc;
@@ -20,6 +21,19 @@ namespace WebProject.Controllers
             apiRequest.Headers.Add("Cookie", new CookieHeaderValue(cookieName, cookieValue).ToString());
 
             return apiRequest;
+        }
+
+        protected bool PassCookiesToClient(HttpResponseMessage apiResponse)
+        {
+            if (apiResponse.Headers.TryGetValues("Set-Cookie", out IEnumerable<string> values))
+            {
+                foreach (string value in values)
+                {
+                    Response.Headers.Add("Set-Cookie", value);
+                }
+                return true;
+            }
+            return false;
         }
     }
 }

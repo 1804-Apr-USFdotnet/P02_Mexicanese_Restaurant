@@ -76,18 +76,7 @@ namespace WebProject.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private bool PassCookiesToClient(HttpResponseMessage apiResponse)
-        {
-            if (apiResponse.Headers.TryGetValues("Set-Cookie", out IEnumerable<string> values))
-            {
-                foreach (string value in values)
-                {
-                    Response.Headers.Add("Set-Cookie", value);
-                }
-                return true;
-            }
-            return false;
-        }
+        
            
     }
 }

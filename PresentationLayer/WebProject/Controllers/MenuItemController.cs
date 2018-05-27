@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -21,8 +22,8 @@ namespace WebProject.Controllers
         public async Task<ActionResult> List()
         {
             //httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
-            HttpResponseMessage response = await HttpClient.GetAsync(
-                "http://localhost:49971/api/menuitem/");
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/menuitem/");
+            HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
             //HttpResponseMessage response = await httpClient.GetAsync("http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem");
 
             if (!response.IsSuccessStatusCode)
@@ -52,14 +53,14 @@ namespace WebProject.Controllers
         }
 
         // GET: MenuItem/Create
-        public ActionResult CreateAsync()
+        public ActionResult Create()
         {
             return View();
         }
 
         // POST: MenuItem/Create
         [HttpPost]
-        public async Task<ActionResult> CreateAsync(MenuItem collection)//change forcollection to the actual model
+        public async Task<ActionResult> Create(MenuItem collection)//change forcollection to the actual model
         {
             try
             {
@@ -68,34 +69,40 @@ namespace WebProject.Controllers
                     return View("Error");
                 }
                 // TODO: Add insert logic here
-                var content = new StringContent(JsonConvert.SerializeObject(collection));
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/menuitem");
+                apiRequest.Content = new ObjectContent<MenuItem>(collection, new JsonMediaTypeFormatter());
 
-                HttpResponseMessage request = await HttpClient.PostAsync(
-                    "http://localhost:49971/api/menuitem/", content);
-                //HttpResponseMessage request = await httpClient.PostAsync("http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/", content);
-
-                if (!request.IsSuccessStatusCode)
+                HttpResponseMessage apiResponse;
+                try
+                {
+                    apiResponse = await HttpClient.SendAsync(apiRequest);
+                }
+                catch
                 {
                     return View("Error");
                 }
-                return RedirectToAction("Index");
+
+                if (!apiResponse.IsSuccessStatusCode)
+                {
+                    return View("Error");
+                }
+                return RedirectToAction("Index", "MenuItem");
             }
             catch
             {
                 return View();
             }
+
         }
 
         // GET: MenuItem/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            HttpResponseMessage response = await httpClient.GetAsync(
-                "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" + id);
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/menuitem/" + id);
+            HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
 
             if (!response.IsSuccessStatusCode)
             {
-
                 return View("Error" + response.StatusCode);
             }
 
@@ -103,8 +110,8 @@ namespace WebProject.Controllers
             return View(menuitem);
         }
 
-        // POST: MenuItem/Edit/5
-        [HttpPost]
+        // PUT: MenuItem/Edit/5
+        [HttpPut]
         public async Task<ActionResult> Edit(int id, MenuItem collection)
         {
             try
@@ -116,19 +123,25 @@ namespace WebProject.Controllers
                 }
                 collection.itemID = id;
                 // TODO: Add insert logic here
-                var content = new StringContent(JsonConvert.SerializeObject(collection));
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/menuitem/"+collection.itemID);
+                apiRequest.Content = new ObjectContent<MenuItem>(collection, new JsonMediaTypeFormatter());
 
-                HttpResponseMessage request = await HttpClient.PutAsync(
-                    "http://localhost:49971/api/menuitem/" + id, content);
-
-                if (!request.IsSuccessStatusCode)
+                HttpResponseMessage apiResponse;
+                try
                 {
-                    //HttpResponseMessage request = await httpClient.PutAsync("http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" +id, content);
-                    return View("Error" + request.StatusCode);
+                    apiResponse = await HttpClient.SendAsync(apiRequest);
+                }
+                catch
+                {
+                    return View("Error");
                 }
 
-                return RedirectToAction("Index");
+                if (!apiResponse.IsSuccessStatusCode)
+                {
+                    //HttpResponseMessage request = await httpClient.PutAsync("http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" +id, content);
+                    return View("Error" + apiResponse.StatusCode);
+                }
+                return RedirectToAction("Index", "MenuItem");
             }
             catch
             {
@@ -139,9 +152,8 @@ namespace WebProject.Controllers
         // GET: MenuItem/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            HttpResponseMessage response = await httpClient.GetAsync(
-                "http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" + id);
-
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/menuitem/" + id);
+            HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
             if (!response.IsSuccessStatusCode)
             {
 
@@ -154,20 +166,27 @@ namespace WebProject.Controllers
 
         // POST: MenuItem/Delete/5
         [HttpPost]
-        public async Task<ActionResult> DeleteAsync(int id, MenuItem collection)
+        public async Task<ActionResult> Delete(int id, MenuItem collection)
         {
             try
             {
-                HttpResponseMessage remove = await HttpClient.DeleteAsync(
-                    "http://localhost:49971/api/menuitem/" + id);
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Delete, "api/menuitem/" + id);
                 //HttpResponseMessage remove = await httpClient.DeleteAsync("http://ec2-18-188-24-56.us-east-2.compute.amazonaws.com/mexicaneserestaurant/api/menuitem/" + id);
-                if (!remove.IsSuccessStatusCode)
+                HttpResponseMessage apiResponse;
+                try
                 {
-
-                    return View("Error" + remove.StatusCode);
+                    apiResponse = await HttpClient.SendAsync(apiRequest);
+                }
+                catch
+                {
+                    return View("Error");
                 }
 
-                return RedirectToAction("Index");
+                if (!apiResponse.IsSuccessStatusCode)
+                {
+                    return View("Error" + apiResponse.StatusCode);
+                }
+                return RedirectToAction("Index", "MenuItem");
             }
             catch
             {

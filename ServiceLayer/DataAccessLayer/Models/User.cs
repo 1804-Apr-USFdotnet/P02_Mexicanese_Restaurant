@@ -8,12 +8,6 @@ namespace DataAccessLayer.Models
 
     public partial class User
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
-        {
-            Addresses = new HashSet<Address>();
-        }
-
         [Key]
         [StringLength(255)]
         public string Email { get; set; }
@@ -23,9 +17,6 @@ namespace DataAccessLayer.Models
         public string Pwd { get; set; }
 
         public int AccessLevel { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Address> Addresses { get; set; }
 
         public virtual CustomerInformation CustomerInformation { get; set; }
     }

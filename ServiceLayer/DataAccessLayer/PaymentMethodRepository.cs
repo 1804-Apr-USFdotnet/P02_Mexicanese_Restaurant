@@ -49,5 +49,10 @@ namespace DataAccessLayer
         {
             _repoContext.SaveChanges();
         }
+
+        public IEnumerable<PaymentMethod> SearchByEmail(string email)
+        {
+            return _repoContext.PaymentMethods.Where(x => x.email == email);
+        }
     }
 }

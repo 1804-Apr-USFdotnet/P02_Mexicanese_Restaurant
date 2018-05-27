@@ -66,6 +66,30 @@ namespace ServiceLayer.Controllers
                 return InternalServerError();
             }
         }
+
+        [HttpGet]
+        [Route("~/api/PaymentMethod/GetAddressByEmail/")]
+        [ResponseType(typeof(Models.PaymentMethodServiceModel))]
+        public IHttpActionResult GetPaymentMethodByEmail(String email)
+        {
+            try
+            {
+                var paymentmethod = _mapper.Map<IEnumerable<PaymentMethodServiceModel>>(_PaymentMethodLogic.SearchByEmail(email));
+                if (paymentmethod.Any())
+                {
+                    return Ok(paymentmethod);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch
+            {
+                return InternalServerError();
+            }
+
+        }
         // PUT: api/PaymentMethod/5
         [ResponseType(typeof(Models.PaymentMethodServiceModel))]
         [HttpPut]

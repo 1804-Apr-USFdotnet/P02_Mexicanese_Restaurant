@@ -10,6 +10,7 @@ namespace DataAccessLayer
     public class AddressRepository : IAddressRepository
     {
         private readonly MexicaneseModel _repoContext;
+        
         public AddressRepository(MexicaneseModel context)
         {
             _repoContext = context;
@@ -18,6 +19,11 @@ namespace DataAccessLayer
         public Address GetByID(int ID)
         {
             return _repoContext.Addresses.Find(ID);
+        }
+
+        public IEnumerable<Address> SearchByEmail(string email)
+        {
+            return _repoContext.Addresses.Where(x => x.email == email);
         }
 
         public void AddAddress(Address Addr)

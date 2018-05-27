@@ -33,6 +33,11 @@ namespace BusinessLogicLayer
             return _PMRepo.GetByID(ID);
         }
 
+        public List<PaymentMethod> SearchByEmail(string email)
+        {
+            return _PMRepo.SearchByEmail(email).ToList();
+        }
+
         public void UpdatePM(PaymentMethod PM)
         {
             _PMRepo.ModifyPaymentMethod(PM);

@@ -11,6 +11,7 @@ namespace DataAccessLayer
     {
         PaymentMethod GetByID(int ID);
         IEnumerable<PaymentMethod> GetAllPaymentMethodes();
+        IEnumerable<PaymentMethod> SearchByEmail(String email);
         void AddPaymentMethod(PaymentMethod PM);
         void ModifyPaymentMethod(PaymentMethod PM);
         void DeletePaymentMethod(PaymentMethod PM);

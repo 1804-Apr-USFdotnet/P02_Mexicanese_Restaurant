@@ -71,6 +71,8 @@
     <Compile Include="ICouponRepository.cs" />
     <Compile Include="ICustomerInformationRepository.cs" />
     <Compile Include="IMenuItemRepository.cs" />
+    <Compile Include="IOrderCouponRepository.cs" />
+    <Compile Include="IOrderItemRepository.cs" />
     <Compile Include="IOrderRepository.cs" />
     <Compile Include="IPaymentMethodRepository.cs" />
     <Compile Include="IUserRepository.cs" />
@@ -86,6 +88,8 @@
     <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="OrderCouponRepository.cs" />
+    <Compile Include="OrderItemRepository.cs" />
     <Compile Include="OrderRepository.cs" />
     <Compile Include="PaymentMethodRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

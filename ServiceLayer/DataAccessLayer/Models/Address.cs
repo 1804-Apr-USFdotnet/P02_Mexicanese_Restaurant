@@ -30,7 +30,5 @@ namespace DataAccessLayer.Models
         [Required]
         [StringLength(20)]
         public string zipcode { get; set; }
-
-        public virtual User User { get; set; }
     }
 }

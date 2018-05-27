@@ -6,12 +6,13 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Linq;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using Owin;
-using Microsoft.Owin.Security;
 using NLog;
 using System.Security.Claims;
 using AutoMapper;
+using Microsoft.Owin.Security;
 
 namespace ServiceLayer.Controllers
 {

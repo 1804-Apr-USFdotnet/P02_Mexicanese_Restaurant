@@ -67,20 +67,19 @@ namespace ServiceLayer.Controllers
 
         // PUT: api/Restaurants/5
         [Authorize(Roles = "admin")]
+        [HttpPut]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutRestaurant(int id, Models.MenuItemServiceModel MI)
+        public IHttpActionResult PutMenuItem(Models.MenuItemServiceModel MI)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            MI.itemID = id;
-
             MenuItem MI_DAL;
             try
             {
-                MI_DAL = _menuLogic.GetMenuItemByID(id);
+                MI_DAL = _menuLogic.GetMenuItemByID(MI.itemID);
             }
             catch
             {
@@ -90,16 +89,16 @@ namespace ServiceLayer.Controllers
             {
                 return NotFound();
             }
-            
 
+            var MI_update = _mapper.Map<MenuItem>(MI);
             try
             {
-                _menuLogic.UpdateMI(MI_DAL);
+                _menuLogic.UpdateMI(MI_update);
             }
             catch (DbUpdateConcurrencyException)
             {
                 MI_DAL = null;
-                MI_DAL = _menuLogic.GetMenuItemByID(id);
+                MI_DAL = _menuLogic.GetMenuItemByID(MI.itemID);
                 if (MI_DAL == null)
                 {
                     return NotFound();
@@ -120,7 +119,7 @@ namespace ServiceLayer.Controllers
         // POST: api/MenuItems
         [Authorize(Roles = "admin")]
         [ResponseType(typeof(Models.MenuItemServiceModel))]
-        public IHttpActionResult PostRestaurant(Models.MenuItemServiceModel MI)
+        public IHttpActionResult PostMenuItem(Models.MenuItemServiceModel MI)
         {
             if (!ModelState.IsValid)
             {
@@ -145,7 +144,7 @@ namespace ServiceLayer.Controllers
         // DELETE: api/MenuItems/5
         [Authorize(Roles = "admin")]
         [ResponseType(typeof(Models.MenuItemServiceModel))]
-        public IHttpActionResult DeleteRestaurant(int id)
+        public IHttpActionResult DeleteMenuItem(int id)
         {
             MenuItem MI_DAL;
             try

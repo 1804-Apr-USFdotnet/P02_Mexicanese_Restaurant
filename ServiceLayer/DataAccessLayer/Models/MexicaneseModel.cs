@@ -1,18 +1,14 @@
-using System;
-using System.Data.Entity;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-
 namespace DataAccessLayer.Models
 {
-    //using System;
-    //using System.Data.Entity;
-    //using System.ComponentModel.DataAnnotations.Schema;
-    //using System.Linq;
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     public partial class MexicaneseModel : DbContext
     {
-        public MexicaneseModel() : base("name=MexicaneseModel")
+        public MexicaneseModel()
+            : base("name=MexicaneseModel")
         {
         }
 

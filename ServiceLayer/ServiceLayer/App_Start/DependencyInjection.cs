@@ -32,14 +32,24 @@ namespace ServiceLayer.App_Start
             builder.RegisterType<MenuItemRepository>().As<IMenuItemRepository>();
             builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<OrderRepository>().As<IOrderRepository>();
-
+            builder.RegisterType<CouponRepository>().As<ICouponRepository>();
+            builder.RegisterType<AddressRepository>().As<IAddressRepository>();
+            builder.RegisterType<OrderItemRepository>().As<IOrderItemRepository>();
+            builder.RegisterType<OrderCouponRepository>().As<IOrderCouponRepository>();
+            builder.RegisterType<PaymentMethodRepository>().As<IPaymentMethodRepository>();
+            builder.RegisterType<CustomerInformationRepository>().As<ICustomerInformationRepository>();
 
             //Services
             builder.RegisterType<MenuItemLogic>().As<iMenuItem>();
             builder.RegisterType<UserLogic>().As<IUser>();
             builder.RegisterType<OrderLogic>().As<IOrder>();
+            builder.RegisterType<CouponLogic>().As<ICoupon>();
+            builder.RegisterType<AddressLogic>().As<IAddress>();
+            builder.RegisterType<OrderItemLogic>().As<IOrderItem>();
+            builder.RegisterType<OrderCouponLogic>().As<IOrderCoupon>();
+            builder.RegisterType<PaymentMethodLogic>().As<IPaymentMethod>();
+            builder.RegisterType<CustomerInformationLogic>().As<ICustomerInformation>();
             builder.RegisterType<identityLogic>().As<ILogic>();
-
 
             _container = builder.Build();
 

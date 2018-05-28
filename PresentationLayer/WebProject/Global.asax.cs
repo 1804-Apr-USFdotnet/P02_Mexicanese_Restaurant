@@ -18,11 +18,11 @@ namespace WebProject
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        protected void Application_Error(object sender, EventArgs e)
-        {
-            Exception exe = Server.GetLastError();
-            Server.ClearError();
-            Response.Redirect("/Error/ErrorMessage");
-        }
+        //protected void Application_Error(object sender, EventArgs e)
+        //{
+        //    Exception exe = Server.GetLastError();
+        //    Server.ClearError();
+        //    Response.Redirect("/Error/ErrorMessage");
+        //}
     }
 }

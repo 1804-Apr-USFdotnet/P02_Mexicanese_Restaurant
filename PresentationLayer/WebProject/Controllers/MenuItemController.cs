@@ -28,14 +28,12 @@ namespace WebProject.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                return View("Error");
+                return View("Error" + response.StatusCode);
             }
 
             var menuitem = await response.Content.ReadAsAsync<IEnumerable<MenuItem>>();
             return View(menuitem);
         }
-
-
 
         // GET: MenuItem/Details/5
         public async Task<ActionResult> Details(int id)
@@ -123,7 +121,7 @@ namespace WebProject.Controllers
                 }
                 collection.itemID = id;
                 // TODO: Add insert logic here
-                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/menuitem/"+collection.itemID);
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/menuitem/" + collection.itemID);
                 apiRequest.Content = new ObjectContent<MenuItem>(collection, new JsonMediaTypeFormatter());
 
                 HttpResponseMessage apiResponse;

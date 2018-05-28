@@ -4,7 +4,7 @@
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
+<h2>Mexican Chinese Fusion Recipes</h2>
 
 <p>
     @Html.ActionLink("Create New Recipe", "Create")
@@ -15,10 +15,10 @@
             Recipe Label
         </th>
         <th>
-            Description
+            
         </th>
         <th>
-            Price
+            
         </th>
         <th>
             Stock
@@ -26,26 +26,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.itemName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.itemDescription)
-        </td>
-        <td>
-            $@Html.DisplayFor(modelItem => item.itemPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.itemID }) |
-            @Html.ActionLink("Details", "Details", new {id=item.itemID}) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.itemID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <b>@Html.ActionLink(item.itemName, "Details", new { id = item.itemID })</b>
+                &nbsp;&nbsp;&nbsp; @Html.ActionLink("Edit", "Edit", new { id = item.itemID }) &nbsp;&nbsp;&nbsp;
+                $@Html.DisplayFor(modelItem => item.itemPrice)
+                <br />
+                @Html.DisplayFor(modelItem => item.itemDescription)
+            </td>
+            <td>
+                
+            </td>
+            <td>
+               
+            </td>
+            <td>
+                Current Stock:
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.itemID })
+            </td>
+        </tr>
+    }
 
 </table>

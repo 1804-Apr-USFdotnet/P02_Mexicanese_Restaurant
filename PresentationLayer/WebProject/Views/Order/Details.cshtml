@@ -1,0 +1,94 @@
+﻿@model WebProject.Models.OrderViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.order.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.order.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.payment)
+        </dt>
+
+        <dd>
+            <label style=" font-family: cursive">Card Number:</label>
+            @Html.DisplayFor(model => model.payment.cardNumber)
+        </dd>
+
+        <dd>
+            <label style=" font-family: cursive">CRV:</label>
+            @Html.DisplayFor(model => model.payment.securityCode)
+        </dd>
+        <dd>
+            <label style=" font-family: cursive">Experation:</label>
+            @Html.DisplayFor(model => model.payment.expDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+        
+        <dd>
+            <label style=" font-family: cursive">Street:</label>
+            @Html.DisplayFor(model => model.address.address1)
+        </dd>
+
+        <dd>
+            <label style=" font-family: cursive">City:</label>
+            @Html.DisplayFor(model => model.address.city)
+        </dd>
+        
+        <dd>
+            <label style=" font-family: cursive">State:</label>
+            @Html.DisplayFor(model => model.address.state)
+        </dd>
+        
+        <dd>
+            <label style=" font-family: cursive">Zipcode:</label>
+            @Html.DisplayFor(model => model.address.zipcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.order.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.order.Status)
+        </dd>
+        <table style="text-align: center">
+            <thead style="text-align: center">Order Items</thead>
+            <tr>
+                <td><h3>Name</h3></td>
+                <td><h3>Description</h3></td>
+                <td><h3>Price</h3></td>
+                <td><h3>Quantity</h3></td>
+            </tr>
+            @foreach (var item in Model.order.OrderItems)
+        {
+            <tr>
+                <td>@item.MenuItem.itemName</td>
+                <td>@item.MenuItem.itemDescription</td>
+                <td>@item.MenuItem.itemPrice</td>
+                <td>@item.quantity</td>
+
+            </tr>
+    }
+        </table>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.order.OrderID }) |
+    @Html.ActionLink("Back to List", "List")
+</p>

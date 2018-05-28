@@ -16,11 +16,11 @@ namespace DataAccessLayer.Models
             OrderItems = new HashSet<OrderItem>();
         }
 
+        public int OrderID { get; set; }
+
         [Required]
         [StringLength(255)]
         public string Email { get; set; }
-
-        public int OrderID { get; set; }
 
         public int PaymentID { get; set; }
 
@@ -30,13 +30,13 @@ namespace DataAccessLayer.Models
         [StringLength(100)]
         public string Status { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderCoupon> OrderCoupons { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderCoupon> OrderCoupons1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        //[Required]
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public ICollection<OrderItem> OrderItems { get; set; }
     }
 }

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebProject.Models.OrderViewModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+   
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.order.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.payment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.order.Email)
+        </td>
+        <td>
+            @item.payment.toString())
+        </td>
+        <td>
+            @item.address.toString())
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.order.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.order.OrderID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.order.OrderID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.order.OrderID })
+        </td>
+    </tr>
+}
+
+</table>

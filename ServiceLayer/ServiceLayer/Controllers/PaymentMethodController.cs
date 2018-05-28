@@ -41,7 +41,7 @@ namespace ServiceLayer.Controllers
             {
                 PM = _PaymentMethodLogic.GetPaymentMethodByID(ID);
             }
-            catch
+            catch (Exception exe)
             {
                 return InternalServerError();
             }

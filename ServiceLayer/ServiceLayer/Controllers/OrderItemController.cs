@@ -36,10 +36,10 @@ namespace ServiceLayer.Controllers
         [ResponseType(typeof(Models.OrderItemServiceModel))]
         public IHttpActionResult GetOrderItem(int ID)
         {
-            OrderItem OdrI;
+            List<OrderItem> OdrI;
             try
             {
-                OdrI = _OrderItemLogic.GetOrderItemByID(ID);
+                OdrI = _OrderItemLogic.GetOrderItemsByID(ID);
             }
             catch
             {
@@ -78,10 +78,10 @@ namespace ServiceLayer.Controllers
 
             //OdrI.Email = email;
 
-            OrderItem test;
+            List<OrderItem> test;
             try
             {
-                test = _OrderItemLogic.GetOrderItemByID(OdrI.orderID);
+                test = _OrderItemLogic.GetOrderItemsByID(OdrI.orderID);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -147,10 +147,10 @@ namespace ServiceLayer.Controllers
         [ResponseType(typeof(Models.OrderItemServiceModel))]
         public IHttpActionResult DeleteOrderItem(int ID)
         {
-            OrderItem OdrI_DAL;
+            List<OrderItem> OdrI_DAL;
             try
             {
-                OdrI_DAL = _OrderItemLogic.GetOrderItemByID(ID);
+                OdrI_DAL = _OrderItemLogic.GetOrderItemsByID(ID);
                 //OdrI_DAL = _mapper.Map<OrderItem>(OdrI);
             }
             catch

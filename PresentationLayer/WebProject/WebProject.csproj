@@ -160,6 +160,8 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuItemController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PaymentMethodController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,6 +173,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderCoupon.cs" />
     <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -273,6 +276,13 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\MenuItem\Details.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Order\List.cshtml" />
+    <Content Include="Views\Order\Edit.cshtml" />
+    <Content Include="Views\PaymentMethod\List.cshtml" />
+    <Content Include="Views\PaymentMethod\Details.cshtml" />
+    <Content Include="Views\PaymentMethod\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

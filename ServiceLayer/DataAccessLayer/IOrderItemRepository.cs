@@ -9,8 +9,11 @@ namespace DataAccessLayer
 {
     public interface IOrderItemRepository
     {
-        OrderItem GetByID(int ID);
+        IEnumerable<OrderItem> GetByID(int ID);
         IEnumerable<OrderItem> GetAllOrderItems();
+        // Because of LazyLoading, I have to explictly ask for it
+        // 'thems are the rules we play by'.
+        MenuItem GetMenuItem(OrderItem ordI); 
         void AddOrderItem(OrderItem OdrI);
         void ModifyOrderItem(OrderItem OdrI);
         void DeleteOrderItem(OrderItem OdrI);

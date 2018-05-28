@@ -17,7 +17,8 @@ namespace DataAccessLayer
 
         public PaymentMethod GetByID(int ID)
         {
-            return _repoContext.PaymentMethods.Find(ID);
+
+            return _repoContext.PaymentMethods.Where(x=> x.id == ID).FirstOrDefault();
         }
 
         public void AddPaymentMethod(PaymentMethod PM)

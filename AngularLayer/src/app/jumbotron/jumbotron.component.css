@@ -1,0 +1,6 @@
+.jumbotron {
+    background-image: url("/assets/img/jumboTron.jpg");
+    background-size: cover;
+    color: white;
+   min-height: 533px;
+}

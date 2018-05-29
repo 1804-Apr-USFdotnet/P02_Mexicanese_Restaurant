@@ -262,7 +262,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\MenuItem\List.cshtml" />
     <Content Include="Views\MenuItem\Create.cshtml" />
-    <Content Include="Views\MenuItem\Details.cshtml" />
     <Content Include="Views\MenuItem\Edit.cshtml" />
     <Content Include="Views\MenuItem\Delete.cshtml" />
     <Content Include="Views\Shared\ErrorNotFound.cshtml" />
@@ -280,6 +279,8 @@
     <Content Include="Views\MenuItem\Details.cshtml" />
     <Content Include="Views\Shared\ErrorUnauthorized.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

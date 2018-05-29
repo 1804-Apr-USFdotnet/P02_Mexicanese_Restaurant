@@ -2,13 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @Request.Browser.IsMobileDevice
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,18 +16,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Mòxīgē rén Chino", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-primary btn-sm" })</li>
-                    <li>@Html.ActionLink("Menu", "Index", "MenuItem", null, new { @class = "btn btn-primary btn-sm" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "btn btn-primary btn-sm" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "btn btn-primary btn-sm" })</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { })</li>
+                    <li>@Html.ActionLink("Menu", "List", "MenuItem", null, new { })</li>
+                    <li>@Html.ActionLink("Users", "Index", "User", null, new { })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", null, new { })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { })</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                    <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -37,7 +39,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mòxīgē rén Chino Delivery Application</p>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
 
@@ -46,3 +48,5 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+

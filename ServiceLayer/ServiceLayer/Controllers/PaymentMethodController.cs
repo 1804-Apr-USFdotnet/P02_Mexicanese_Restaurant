@@ -158,7 +158,7 @@ namespace ServiceLayer.Controllers
             {
                 _PaymentMethodLogic.AddPM(PMLogic);
             }
-            catch
+            catch (Exception exe)
             {
                 return InternalServerError();
             }

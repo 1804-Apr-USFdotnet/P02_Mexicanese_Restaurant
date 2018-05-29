@@ -66,7 +66,6 @@ namespace WebProject.Controllers
                 {
                     return View("Error");
                 }
-                // TODO: Add insert logic here
                 HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/menuitem");
                 apiRequest.Content = new ObjectContent<MenuItem>(collection, new JsonMediaTypeFormatter());
 

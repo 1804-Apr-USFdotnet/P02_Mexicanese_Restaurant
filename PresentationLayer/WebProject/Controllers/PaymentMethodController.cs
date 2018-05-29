@@ -59,7 +59,7 @@ namespace WebProject.Controllers
             try
             {
                 // TODO: Add insert logic here
-                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/Payment/");
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/PaymentMethod/");
                 apiRequest.Content = new ObjectContent<PaymentMethod>(payment, new JsonMediaTypeFormatter());
                 HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
                 if (response.IsSuccessStatusCode)

@@ -1,0 +1,13 @@
+<button (click)="getMenu()">Search</button>
+<div *ngIf="items">
+  <h3>Menu:</h3>
+<ol > 
+  <li *ngFor="let mi of items">
+    {{mi.itemName}},{{mi.itemDescription}},{{mi.itemPrice}}
+  </li>
+
+</ol>
+</div>
+<div *ngIf="!items">
+  <h4>No menu</h4>
+</div>

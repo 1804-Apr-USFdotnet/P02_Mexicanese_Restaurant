@@ -9,9 +9,9 @@ using Newtonsoft.Json;
 using WebProject.Models;
 namespace WebProject.Controllers
 {
-    public class PaymentMethodController : AServiceController
+    public class CouponController : AServiceController
     {
-        // GET: PaymentMethod
+        // GET: Coupon
         public ActionResult Index()
         {
             return RedirectToAction("List");
@@ -19,7 +19,7 @@ namespace WebProject.Controllers
 
         public async Task<ActionResult> List()
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/");
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Coupon/");
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
 
             if (!response.IsSuccessStatusCode)
@@ -27,14 +27,14 @@ namespace WebProject.Controllers
                 return View("Error");
             }
 
-            var payments = await response.Content.ReadAsAsync<IEnumerable<PaymentMethod>>();
-            return View(payments);
+            var coupons = await response.Content.ReadAsAsync<IEnumerable<Coupon>>();
+            return View(coupons);
         }
 
-        // GET: PaymentMethod/Details/5
+        // GET: Coupon/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/" + id);
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Coupon/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
 
             if (!response.IsSuccessStatusCode)
@@ -42,25 +42,25 @@ namespace WebProject.Controllers
                 return View("Error");
             }
 
-            var payment = await response.Content.ReadAsAsync<PaymentMethod>();
-            return View(payment);
+            var coupon = await response.Content.ReadAsAsync<Coupon>();
+            return View(coupon);
         }
 
-        // GET: PaymentMethod/Create
+        // GET: Coupon/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PaymentMethod/Create
+        // POST: Coupon/Create
         [HttpPost]
-        public async Task<ActionResult> Create(PaymentMethod payment)
+        public async Task<ActionResult> Create(Coupon coupon)
         {
             try
             {
                 // TODO: Add insert logic here
-                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/Payment/");
-                apiRequest.Content = new ObjectContent<PaymentMethod>(payment, new JsonMediaTypeFormatter());
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/coupon/");
+                apiRequest.Content = new ObjectContent<Coupon>(coupon, new JsonMediaTypeFormatter());
                 HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
                 if (response.IsSuccessStatusCode)
                 {
@@ -77,24 +77,24 @@ namespace WebProject.Controllers
             }
         }
 
-        // GET: PaymentMethod/Edit/5
+        // GET: Coupon/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/" + id);
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Coupon/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
-            var payment = await response.Content.ReadAsAsync<PaymentMethod>();
-            return View(payment);
+            var coupon = await response.Content.ReadAsAsync<Coupon>();
+            return View(coupon);
         }
 
-        // POST: PaymentMethod/Edit/5
+        // POST: Coupon/Edit/5
         [HttpPost]
-        public async Task<ActionResult> Edit(PaymentMethod payment)
+        public async Task<ActionResult> Edit(Coupon coupon)
         {
             try
             {
                 // TODO: Add update logic here
-                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/PaymentMethod/");
-                apiRequest.Content = new ObjectContent<PaymentMethod>(payment, new JsonMediaTypeFormatter());
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/Coupon/");
+                apiRequest.Content = new ObjectContent<Coupon>(coupon, new JsonMediaTypeFormatter());
                 HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
                 if (response.IsSuccessStatusCode)
                 {
@@ -111,25 +111,25 @@ namespace WebProject.Controllers
             }
         }
 
-        // GET: PaymentMethod/Delete/5
+        // GET: Coupon/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/" + id);
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Coupon/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
-            var payment = await response.Content.ReadAsAsync<PaymentMethod>();
-            return View(payment);
+            var coupon = await response.Content.ReadAsAsync<Coupon>();
+            return View(coupon);
         }
 
-        // POST: PaymentMethod/Delete/5
+        // POST: Coupon/Delete/5
         [HttpPost]
-        public async Task<ActionResult> Delete(PaymentMethod payment)
+        public async Task<ActionResult> Delete(Coupon coupon)
         {
             try
             {
                 // TODO: Add delete logic here
-                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Delete, "api/PaymentMethod/" + payment.id);
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Delete, "api/Coupon/" + coupon.id);
                 HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
-                //var result = await response.Content.ReadAsAsync<PaymentMethod>();
+                //var result = await response.Content.ReadAsAsync<Coupon>();
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("List");

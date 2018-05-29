@@ -9,9 +9,9 @@ using Newtonsoft.Json;
 using WebProject.Models;
 namespace WebProject.Controllers
 {
-    public class PaymentMethodController : AServiceController
+    public class AddressController : AServiceController
     {
-        // GET: PaymentMethod
+        // GET: Address
         public ActionResult Index()
         {
             return RedirectToAction("List");
@@ -19,7 +19,7 @@ namespace WebProject.Controllers
 
         public async Task<ActionResult> List()
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/");
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Address/");
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
 
             if (!response.IsSuccessStatusCode)
@@ -27,14 +27,14 @@ namespace WebProject.Controllers
                 return View("Error");
             }
 
-            var payments = await response.Content.ReadAsAsync<IEnumerable<PaymentMethod>>();
-            return View(payments);
+            var addresss = await response.Content.ReadAsAsync<IEnumerable<Address>>();
+            return View(addresss);
         }
 
-        // GET: PaymentMethod/Details/5
+        // GET: Address/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/" + id);
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Address/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
 
             if (!response.IsSuccessStatusCode)
@@ -42,25 +42,25 @@ namespace WebProject.Controllers
                 return View("Error");
             }
 
-            var payment = await response.Content.ReadAsAsync<PaymentMethod>();
-            return View(payment);
+            var address = await response.Content.ReadAsAsync<Address>();
+            return View(address);
         }
 
-        // GET: PaymentMethod/Create
+        // GET: Address/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PaymentMethod/Create
+        // POST: Address/Create
         [HttpPost]
-        public async Task<ActionResult> Create(PaymentMethod payment)
+        public async Task<ActionResult> Create(Address address)
         {
             try
             {
                 // TODO: Add insert logic here
-                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/Payment/");
-                apiRequest.Content = new ObjectContent<PaymentMethod>(payment, new JsonMediaTypeFormatter());
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/address/");
+                apiRequest.Content = new ObjectContent<Address>(address, new JsonMediaTypeFormatter());
                 HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
                 if (response.IsSuccessStatusCode)
                 {
@@ -77,24 +77,24 @@ namespace WebProject.Controllers
             }
         }
 
-        // GET: PaymentMethod/Edit/5
+        // GET: Address/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/" + id);
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Address/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
-            var payment = await response.Content.ReadAsAsync<PaymentMethod>();
-            return View(payment);
+            var address = await response.Content.ReadAsAsync<Address>();
+            return View(address);
         }
 
-        // POST: PaymentMethod/Edit/5
+        // POST: Address/Edit/5
         [HttpPost]
-        public async Task<ActionResult> Edit(PaymentMethod payment)
+        public async Task<ActionResult> Edit(Address address)
         {
             try
             {
                 // TODO: Add update logic here
-                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/PaymentMethod/");
-                apiRequest.Content = new ObjectContent<PaymentMethod>(payment, new JsonMediaTypeFormatter());
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/Address/");
+                apiRequest.Content = new ObjectContent<Address>(address, new JsonMediaTypeFormatter());
                 HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
                 if (response.IsSuccessStatusCode)
                 {
@@ -111,25 +111,25 @@ namespace WebProject.Controllers
             }
         }
 
-        // GET: PaymentMethod/Delete/5
+        // GET: Address/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/" + id);
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Address/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
-            var payment = await response.Content.ReadAsAsync<PaymentMethod>();
-            return View(payment);
+            var address = await response.Content.ReadAsAsync<Address>();
+            return View(address);
         }
 
-        // POST: PaymentMethod/Delete/5
+        // POST: Address/Delete/5
         [HttpPost]
-        public async Task<ActionResult> Delete(PaymentMethod payment)
+        public async Task<ActionResult> Delete(Address address)
         {
             try
             {
                 // TODO: Add delete logic here
-                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Delete, "api/PaymentMethod/" + payment.id);
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Delete, "api/Address/" + address.id);
                 HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
-                //var result = await response.Content.ReadAsAsync<PaymentMethod>();
+                //var result = await response.Content.ReadAsAsync<Address>();
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("List");

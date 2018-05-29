@@ -17,7 +17,7 @@ namespace WebProject.Controllers
 
         public ActionResult Index()
         {
-            return RedirectToAction("Details");
+            return RedirectToAction("List");
         }
         public async Task<ActionResult> Details(int id)
         {

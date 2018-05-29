@@ -10,7 +10,6 @@ using System.Web;
 using System.Web.Http;
 using Owin;
 using NLog;
-using System.Security.Claims;
 using AutoMapper;
 using Microsoft.Owin.Security;
 

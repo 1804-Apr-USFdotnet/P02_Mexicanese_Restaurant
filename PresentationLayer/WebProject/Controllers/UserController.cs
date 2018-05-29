@@ -43,13 +43,37 @@ namespace WebProject.Controllers
 
         // POST: User/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create(User collection)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (!ModelState.IsValid)
+                {
+                    return View("Error");
+                }
 
-                return RedirectToAction("Index");
+                CustomerInformation customerInformation = new CustomerInformation();
+                customerInformation = collection.CustomerInformation;
+                collection.CustomerInformation = null;
+
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/user");
+                apiRequest.Content = new ObjectContent<User>(collection, new JsonMediaTypeFormatter());
+
+                HttpResponseMessage apiResponse;
+                try
+                {
+                    apiResponse = await HttpClient.SendAsync(apiRequest);
+                }
+                catch
+                {
+                    return View("List");
+                }
+
+                if (!apiResponse.IsSuccessStatusCode)
+                {
+                    return View("Error");
+                }
+                return RedirectToAction("Index", "MenuItem");
             }
             catch
             {

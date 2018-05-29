@@ -1,5 +1,6 @@
 import { Input,Component, OnInit } from '@angular/core';
 import {menuItem} from '../models/menuItem';
+import { ItemComponent } from '../item/item.component';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -8,7 +9,7 @@ import {menuItem} from '../models/menuItem';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  public items: menuItem = {itemID:1,itemName:'name',itemDescription:'testdesc',itemPrice:1.00,Stock:2};
+  public items: ItemComponent[] = [{id:1,name:'name',desc:'testdesc',price:1.00,quantity:2}];
 
   constructor() { }
 

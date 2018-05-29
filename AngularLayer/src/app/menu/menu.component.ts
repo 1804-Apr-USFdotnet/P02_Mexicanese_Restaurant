@@ -14,9 +14,6 @@ export class MenuComponent implements OnInit {
   constructor(private mrSvc: MRService) { }
 
   ngOnInit() {
-  }
-
-  getMenu(){
     this.mrSvc.getMenu((response) => {
       this.items = response;
     });

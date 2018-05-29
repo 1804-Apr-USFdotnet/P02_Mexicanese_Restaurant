@@ -7,7 +7,7 @@
 <h2>Active User Accounts</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
     <tr>
@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.CustomerInformation.phone)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Email }) |
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.Email }) |
             @Html.ActionLink("Details", "Details", new { id = item.Email }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Email })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Email })*@
         </td>
     </tr>
 }

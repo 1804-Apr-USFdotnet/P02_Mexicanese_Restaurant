@@ -46,6 +46,8 @@ node('master'){
         try{
             dir('AngularLayer') {
               bat 'npm run build -- --base-href /SiAmigos/ --prod'
+              bat 'md dist\\assets\\img'
+              bat 'copy /y src\\assets\\img\\*.png dist\\assets\\img'
             }
         } 
         catch (exc) {

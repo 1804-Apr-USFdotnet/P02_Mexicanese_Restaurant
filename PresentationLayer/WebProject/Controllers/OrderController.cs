@@ -38,15 +38,27 @@ namespace WebProject.Controllers
             HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Order/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
             var orders = await response.Content.ReadAsAsync<Order>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error");
+            }
             ovm = new OrderViewModel();
             ovm.order = orders;
             HttpRequestMessage apiRequest1 = CreateRequestToService(HttpMethod.Get, "api/Address/" + orders.AddressID);
             response = await HttpClient.SendAsync(apiRequest1);
             var address = await response.Content.ReadAsAsync<Address>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error");
+            }
             ovm.address = address;
             HttpRequestMessage apiRequest2 = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/" + orders.PaymentID);
             response = await HttpClient.SendAsync(apiRequest2);
             var payment = await response.Content.ReadAsAsync<PaymentMethod>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error");
+            }
             ovm.payment = payment;
             viewlist.Add(ovm);
             return View(ovm);
@@ -59,19 +71,39 @@ namespace WebProject.Controllers
             OrderViewModel ovm = null;
             HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Order/");
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error");
+            }
             var orders = await response.Content.ReadAsAsync<IEnumerable<Order>>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error" + response.StatusCode);
+            }
             foreach (var order in orders)
             {
                 ovm = new OrderViewModel();
                 ovm.order = order;
                 HttpRequestMessage apiRequest1 = CreateRequestToService(HttpMethod.Get, "api/Address/" + order.AddressID);
                 response = await HttpClient.SendAsync(apiRequest1);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return View("Error");
+                }
                 var address = await response.Content.ReadAsAsync<Address>();
                 ovm.address = address;
+                if (!response.IsSuccessStatusCode)
+                {
+                    return View("Error" + response.StatusCode);
+                }
                 HttpRequestMessage apiRequest2 = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/" + order.PaymentID);
                 response = await HttpClient.SendAsync(apiRequest2);
                 var payment = await response.Content.ReadAsAsync<PaymentMethod>();
                 ovm.payment = payment;
+                if (!response.IsSuccessStatusCode)
+                {
+                    return View("Error" + response.StatusCode);
+                }
                 viewlist.Add(ovm);
             }
 
@@ -92,8 +124,11 @@ namespace WebProject.Controllers
             HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Order/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
             var order = await response.Content.ReadAsAsync<Order>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error" + response.StatusCode);
+            }
 
-           
 
             return View(order);
 

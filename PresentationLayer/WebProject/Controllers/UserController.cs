@@ -19,10 +19,10 @@ namespace WebProject.Controllers
         {
             HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/User/");
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
-            
+
             if (!response.IsSuccessStatusCode)
             {
-                return View("Error"+response.StatusCode);
+                return View("Error" + response.StatusCode);
             }
 
             var user = await response.Content.ReadAsAsync<IEnumerable<User>>();
@@ -55,14 +55,23 @@ namespace WebProject.Controllers
                 CustomerInformation customerInformation = new CustomerInformation();
                 customerInformation = collection.CustomerInformation;
                 collection.CustomerInformation = null;
+                collection.AccessLevel = 1;
+                customerInformation.Email = collection.Email;
 
-                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/user");
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/User");
                 apiRequest.Content = new ObjectContent<User>(collection, new JsonMediaTypeFormatter());
+
+                HttpRequestMessage apiRequest2 = CreateRequestToService(HttpMethod.Post, "api/CustomerInformaion");
+                apiRequest.Content = new ObjectContent<CustomerInformation>(customerInformation, new JsonMediaTypeFormatter());
 
                 HttpResponseMessage apiResponse;
                 try
                 {
                     apiResponse = await HttpClient.SendAsync(apiRequest);
+                    if (!apiResponse.IsSuccessStatusCode)
+                    {
+                        return View("Error" + apiResponse.StatusCode);
+                    }
                 }
                 catch
                 {
@@ -71,7 +80,25 @@ namespace WebProject.Controllers
 
                 if (!apiResponse.IsSuccessStatusCode)
                 {
-                    return View("Error");
+                    return View("Error" + apiResponse.StatusCode);
+                }
+
+                try
+                {
+                    apiResponse = await HttpClient.SendAsync(apiRequest2);
+                    if (!apiResponse.IsSuccessStatusCode)
+                    {
+                        return View("Error" + apiResponse.StatusCode);
+                    }
+                }
+                catch
+                {
+                    return View("List");
+                }
+
+                if (!apiResponse.IsSuccessStatusCode)
+                {
+                    return View("Error" + apiResponse.StatusCode);
                 }
                 return RedirectToAction("Index", "MenuItem");
             }
@@ -89,13 +116,63 @@ namespace WebProject.Controllers
 
         // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public async Task<ActionResult> Edit(int id, User collection)
         {
             try
             {
-                // TODO: Add update logic here
+                if (!ModelState.IsValid)
+                {
+                    return View("Error");
+                }
 
-                return RedirectToAction("Index");
+                CustomerInformation customerInformation = new CustomerInformation();
+                customerInformation = collection.CustomerInformation;
+                collection.CustomerInformation = null;
+                customerInformation.Email = collection.Email;
+
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/User");
+                apiRequest.Content = new ObjectContent<User>(collection, new JsonMediaTypeFormatter());
+
+                HttpRequestMessage apiRequest2 = CreateRequestToService(HttpMethod.Put, "api/CustomerInformaion");
+                apiRequest.Content = new ObjectContent<CustomerInformation>(customerInformation, new JsonMediaTypeFormatter());
+
+                HttpResponseMessage apiResponse;
+                try
+                {
+                    apiResponse = await HttpClient.SendAsync(apiRequest);
+                    if (!apiResponse.IsSuccessStatusCode)
+                    {
+                        return View("Error" + apiResponse.StatusCode);
+                    }
+                }
+                catch
+                {
+                    return View("List");
+                }
+
+                if (!apiResponse.IsSuccessStatusCode)
+                {
+                    return View("Error" + apiResponse.StatusCode);
+                }
+
+                try
+                {
+                    apiResponse = await HttpClient.SendAsync(apiRequest2);
+                    if (!apiResponse.IsSuccessStatusCode)
+                    {
+                        return View("Error" + apiResponse.StatusCode);
+                    }
+                }
+                catch
+                {
+                    return View("List");
+                }
+
+                if (!apiResponse.IsSuccessStatusCode)
+                {
+                    return View("Error" + apiResponse.StatusCode);
+                }
+                return RedirectToAction("Index", "MenuItem");
             }
             catch
             {
@@ -111,13 +188,30 @@ namespace WebProject.Controllers
 
         // POST: User/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                if (!ModelState.IsValid)
+                {
+                    return View("Error");
+                }
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Delete, "api/user/" + id);
+                HttpResponseMessage apiResponse;
+                try
+                {
+                    apiResponse = await HttpClient.SendAsync(apiRequest);
+                }
+                catch
+                {
+                    return View("Error");
+                }
 
-                return RedirectToAction("Index");
+                if (!apiResponse.IsSuccessStatusCode)
+                {
+                    return View("Error" + apiResponse.StatusCode);
+                }
+                return RedirectToAction("Index", "User");
             }
             catch
             {

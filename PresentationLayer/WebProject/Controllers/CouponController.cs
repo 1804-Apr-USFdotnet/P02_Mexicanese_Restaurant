@@ -117,6 +117,10 @@ namespace WebProject.Controllers
             HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Coupon/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
             var coupon = await response.Content.ReadAsAsync<Coupon>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error" + response.StatusCode);
+            }
             return View(coupon);
         }
 

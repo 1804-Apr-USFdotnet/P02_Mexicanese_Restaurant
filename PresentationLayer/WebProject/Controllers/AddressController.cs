@@ -28,6 +28,10 @@ namespace WebProject.Controllers
             }
 
             var addresss = await response.Content.ReadAsAsync<IEnumerable<Address>>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error" + response.StatusCode);
+            }
             return View(addresss);
         }
 
@@ -43,6 +47,10 @@ namespace WebProject.Controllers
             }
 
             var address = await response.Content.ReadAsAsync<Address>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error" + response.StatusCode);
+            }
             return View(address);
         }
 
@@ -83,6 +91,10 @@ namespace WebProject.Controllers
             HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Address/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
             var address = await response.Content.ReadAsAsync<Address>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error" + response.StatusCode);
+            }
             return View(address);
         }
 
@@ -117,6 +129,10 @@ namespace WebProject.Controllers
             HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Address/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
             var address = await response.Content.ReadAsAsync<Address>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error" + response.StatusCode);
+            }
             return View(address);
         }
 

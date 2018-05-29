@@ -198,7 +198,15 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\SHbootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\templated-metrobiz\default.css" />
+    <Content Include="Content\templated-metrobiz\fonts.css" />
+    <Content Include="Content\templated-metrobiz\fonts\fontawesome-social-webfont.svg" />
+    <Content Include="Content\templated-metrobiz\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\templated-metrobiz\images\overlay.png" />
+    <Content Include="Content\templated-metrobiz\index.html" />
+    <Content Include="Content\templated-metrobiz\license.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Pictures\food1.jpg" />
@@ -230,6 +238,13 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\templated-metrobiz\fonts\fontawesome-social-webfont.eot" />
+    <Content Include="Content\templated-metrobiz\fonts\fontawesome-social-webfont.ttf" />
+    <Content Include="Content\templated-metrobiz\fonts\fontawesome-social-webfont.woff" />
+    <Content Include="Content\templated-metrobiz\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\templated-metrobiz\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\templated-metrobiz\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\templated-metrobiz\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -305,6 +320,7 @@
     <Content Include="Views\Coupon\Details.cshtml" />
     <Content Include="Views\Coupon\Edit.cshtml" />
     <Content Include="Views\Coupon\List.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,14 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Order Details</h2>
 
 <div>
     <h4>Order</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.order.Email)
+            <b>Email</b>
         </dt>
 
         <dd>
@@ -19,61 +19,75 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.payment)
+            <b>Card Number</b>
         </dt>
 
         <dd>
-            <label style=" font-family: cursive">Card Number:</label>
+            <b></b>
             @Html.DisplayFor(model => model.payment.cardNumber)
         </dd>
 
+        <dt>
+            <b>CRV</b>
+        </dt>
+
         <dd>
-            <label style=" font-family: cursive">CRV:</label>
             @Html.DisplayFor(model => model.payment.securityCode)
         </dd>
+        <dt>
+            <b>Expiration Date</b>
+        </dt>
         <dd>
-            <label style=" font-family: cursive">Experation:</label>
+            
             @Html.DisplayFor(model => model.payment.expDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.address)
+            <b>Address</b>
         </dt>
-        
-        <dd>
-            <label style=" font-family: cursive">Street:</label>
-            @Html.DisplayFor(model => model.address.address1)
-        </dd>
 
         <dd>
-            <label style=" font-family: cursive">City:</label>
+            @Html.DisplayFor(model => model.address.address1)
+        </dd>
+        <dt>
+            <b>City</b>
+        </dt>
+
+        <dd>
+            
             @Html.DisplayFor(model => model.address.city)
         </dd>
-        
+        <dt>
+            <b>State</b>
+        </dt>
+
         <dd>
-            <label style=" font-family: cursive">State:</label>
+            
             @Html.DisplayFor(model => model.address.state)
         </dd>
-        
+        <dt>
+            <b>Zipcode:</b>
+        </dt>
         <dd>
-            <label style=" font-family: cursive">Zipcode:</label>
+            
             @Html.DisplayFor(model => model.address.zipcode)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.order.Status)
+            <b>Status</b>
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.order.Status)
         </dd>
+    </dl>
         <table style="text-align: center">
             <thead style="text-align: center">Order Items</thead>
             <tr>
-                <td><h3>Name</h3></td>
-                <td><h3>Description</h3></td>
-                <td><h3>Price</h3></td>
-                <td><h3>Quantity</h3></td>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
             </tr>
             @foreach (var item in Model.order.OrderItems)
         {
@@ -86,7 +100,7 @@
             </tr>
     }
         </table>
-    </dl>
+    
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.order.OrderID }) |

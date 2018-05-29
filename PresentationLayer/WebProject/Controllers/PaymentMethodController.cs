@@ -83,6 +83,10 @@ namespace WebProject.Controllers
             HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
             var payment = await response.Content.ReadAsAsync<PaymentMethod>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error" + response.StatusCode);
+            }
             return View(payment);
         }
 
@@ -117,6 +121,10 @@ namespace WebProject.Controllers
             HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/PaymentMethod/" + id);
             HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
             var payment = await response.Content.ReadAsAsync<PaymentMethod>();
+            if (!response.IsSuccessStatusCode)
+            {
+                return View("Error" + response.StatusCode);
+            }
             return View(payment);
         }
 

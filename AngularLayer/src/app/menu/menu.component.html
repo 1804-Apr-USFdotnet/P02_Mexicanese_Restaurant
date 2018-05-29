@@ -1,12 +1,20 @@
 <button (click)="getMenu()">Search</button>
 <div *ngIf="items">
   <h3>Menu:</h3>
-<ol > 
-  <li *ngFor="let mi of items">
-    {{mi.itemName}}, {{mi.itemDescription}}, {{mi.itemPrice}} <button>Add to Cart</button>
-  </li>
+  <table> 
+    <th>Recipe Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th></th>
+   
+  <tr *ngFor="let mi of items">
+    <td>{{mi.itemName}}</td>
+    <td> {{mi.itemDescription}}</td>
+    <td> {{mi.itemPrice}}</td>
+    <td> <button>Add to Cart</button></td>
+  </tr>
 
-</ol>
+</table>
 </div>
 <div *ngIf="!items">
   <h4>No menu</h4>

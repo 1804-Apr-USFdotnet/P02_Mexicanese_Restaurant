@@ -85,17 +85,26 @@ namespace WebProject.Controllers
 
         // POST: PaymentMethod/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(PaymentMethod payment)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/PaymentMethod/");
+                apiRequest.Content = new ObjectContent<PaymentMethod>(payment, new JsonMediaTypeFormatter());
+                HttpResponseMessage response = await HttpClient.SendAsync(apiRequest);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("List");
+                }
+                else
+                {
+                    return View("Error");
+                }
             }
             catch
             {
-                return View();
+                return View("Error");
             }
         }
 
@@ -107,7 +116,7 @@ namespace WebProject.Controllers
 
         // POST: PaymentMethod/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(PaymentMethod payment)
         {
             try
             {

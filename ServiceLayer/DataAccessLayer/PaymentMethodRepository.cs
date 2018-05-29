@@ -17,7 +17,8 @@ namespace DataAccessLayer
 
         public PaymentMethod GetByID(int ID)
         {
-            return _repoContext.PaymentMethods.Find(ID);
+
+            return _repoContext.PaymentMethods.Where(x=> x.id == ID).FirstOrDefault();
         }
 
         public void AddPaymentMethod(PaymentMethod PM)
@@ -28,7 +29,7 @@ namespace DataAccessLayer
 
         public void DeletePaymentMethod(PaymentMethod PM)
         {
-            var delete = _repoContext.PaymentMethods.Find(PM.id);
+            var delete = _repoContext.PaymentMethods.Where(x=>x.id == PM.id).FirstOrDefault();
             _repoContext.PaymentMethods.Remove(delete);
             _repoContext.SaveChanges();
         }
@@ -40,7 +41,7 @@ namespace DataAccessLayer
 
         public void ModifyPaymentMethod(PaymentMethod PM)
         {
-            var modify = _repoContext.PaymentMethods.Find(PM.id);
+            var modify = _repoContext.PaymentMethods.Where(x=> x.id == PM.id).FirstOrDefault();
             _repoContext.Entry(modify).CurrentValues.SetValues(PM);
             _repoContext.SaveChanges();
         }

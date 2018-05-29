@@ -23,5 +23,10 @@ namespace DataAccessLayer.Models
         public virtual MenuItem MenuItem { get; set; }
 
         public virtual Order Order { get; set; }
+
+        public MenuItem getMenuItem()
+        {
+            return MenuItem;
+        }
     }
 }

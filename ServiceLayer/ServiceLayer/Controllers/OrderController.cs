@@ -36,7 +36,9 @@ namespace ServiceLayer.Controllers
         [ResponseType(typeof(Models.OrderServiceModel))]
         public IHttpActionResult GetOrder(int ID)
         {
+            OrderItemLogic odriLogic = new OrderItemLogic();
             Order Odr;
+            List<OrderItem> items = new List<OrderItem>(); 
             try
             {
                 Odr = _OrderLogic.GetOrderByID(ID);
@@ -51,6 +53,12 @@ namespace ServiceLayer.Controllers
             }
 
             var Odr_SL = _mapper.Map<Models.OrderServiceModel>(Odr);
+            items = odriLogic.GetOrderItemsByID(ID);
+            foreach (var item in items)
+            {
+                Odr_SL.OrderItems.Add(item);
+            }
+
             return Ok(Odr_SL);
         }
 
@@ -138,7 +146,7 @@ namespace ServiceLayer.Controllers
             {
                 return InternalServerError();
             }
-
+            
             var newOrder = _mapper.Map<Models.OrderServiceModel>(OdrLogic);
             return CreatedAtRoute("DefaultApi", new { email = Odr.Email }, newOrder);
         }

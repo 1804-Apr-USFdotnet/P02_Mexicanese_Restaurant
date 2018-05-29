@@ -28,6 +28,10 @@ namespace WebProject.Models
         [StringLength(20)]
         public string zipcode { get; set; }
 
-        public virtual User User { get; set; }
+        //public virtual User User { get; set; }
+        public string toString()
+        {
+            return string.Format(address1 + "\n\r" + city + " " + state + " " + zipcode);
+        }
     }
   }

@@ -1,0 +1,42 @@
+﻿@model WebProject.Models.Coupon
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Coupon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.couponCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.couponCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.expDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.discountAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.discountAmount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

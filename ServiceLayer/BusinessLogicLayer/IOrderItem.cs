@@ -10,9 +10,10 @@ namespace BusinessLogicLayer
     public interface IOrderItem
     {
         List<OrderItem> AllOdrI();
-        OrderItem GetOrderItemByID(int orderId);
+        List<OrderItem> GetOrderItemsByID(int orderId);
+        MenuItem GetMenuItem(OrderItem odrI);
         void AddOdrI(OrderItem OdrI);
         void UpdateOdrI(OrderItem OdrI);
-        void DeleteOdrI(OrderItem OdrI);
+        void DeleteOdrI(List<OrderItem> OdrI);
     }
 }

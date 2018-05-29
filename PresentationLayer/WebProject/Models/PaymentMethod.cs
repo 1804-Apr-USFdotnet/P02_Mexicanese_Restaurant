@@ -13,6 +13,11 @@ namespace WebProject.Models
         public string securityCode { get; set; }
 
         public DateTime expDate { get; set; }
+
+        public string toString()
+        {
+            return string.Format("CardNumber:" +cardNumber + " " + "CRV:" + securityCode + " " + expDate.ToString());
+        }
     }
 
 }

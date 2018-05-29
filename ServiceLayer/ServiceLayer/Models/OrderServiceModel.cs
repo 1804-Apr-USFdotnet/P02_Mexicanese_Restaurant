@@ -8,7 +8,7 @@ namespace ServiceLayer.Models
 {
     public class OrderServiceModel
     {
-
+       
         [Required]
         [StringLength(255)]
         public string Email { get; set; }
@@ -19,9 +19,9 @@ namespace ServiceLayer.Models
 
         public int AddressID { get; set; }
 
-        public decimal Total => GetTotal();
+        //public decimal Total => GetTotal();
 
-        public List<MenuItem> MenuItems => GetMenuItems();
+        //public List<MenuItem> MenuItems { get; private set; }
 
         [Required]
         [StringLength(100)]
@@ -32,30 +32,40 @@ namespace ServiceLayer.Models
         public virtual ICollection<OrderCoupon> OrderCoupons1 { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
 
-        private decimal GetTotal()
-        {
-            decimal total = 0;
-            //get gross total
-            foreach (var ord in OrderItems)
-            {
-                total += ord.MenuItem.itemPrice;
-            }
-            //deduct coupons
+        //public OrderServiceModel()
+        //{
+        //    if (OrderItems != null)
+        //    {
+        //        foreach (var odrI in OrderItems)
+        //        {
+        //            MenuItems.Add(odrI.getMenuItem());
+        //        }
+        //    }
+        //}
+        //private decimal GetTotal()
+        //{
+        //    decimal total = 0;
+        //    //get gross total
+        //    foreach (var ord in OrderItems)
+        //    {
+        //        total += ord.MenuItem.itemPrice;
+        //    }
+        //    //deduct coupons
 
 
-            return total;
-        }
+        //    return total;
+        //}
 
-        private List<MenuItem> GetMenuItems()
-        {
-            List<MenuItem> list = new List<MenuItem>();
-            foreach (var orditem in OrderItems)
-            {
-                list.Add(orditem.MenuItem);
-            }
+        //private List<MenuItem> GetMenuItems()
+        //{
+        //    List<MenuItem> list = new List<MenuItem>();
+        //    foreach (var orditem in OrderItems)
+        //    {
+        //        list.Add(orditem.MenuItem);
+        //    }
 
-            return list;
-        }
+        //    return list;
+        //}
     }
 
     public class OrderServiceMapper : Profile
@@ -81,6 +91,7 @@ namespace ServiceLayer.Models
                 .ForSourceMember(x => x.OrderCoupons, y => y.Ignore())
                 .ForSourceMember(x => x.OrderCoupons1, y => y.Ignore())
                 .ForSourceMember(x => x.OrderItems, y => y.Ignore());
+
 
         }
     }

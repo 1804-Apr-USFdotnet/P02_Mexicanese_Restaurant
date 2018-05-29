@@ -7,12 +7,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule} from '@angular/common/http';
 import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { FormsModule } from "@angular/forms";
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    JumbotronComponent
+    JumbotronComponent,
+    ShoppingCartComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
